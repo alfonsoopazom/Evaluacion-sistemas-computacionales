@@ -1,0 +1,19 @@
+header nav{
+    background-color: steelblue;
+}
+
+header nav ul li{
+    background-color: steelblue;
+}
+
+body{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: x-small;
+    padding: 0;
+    margin: 5px;
+
+}
+
+.encabezado{
+    text-align: center;
+}
