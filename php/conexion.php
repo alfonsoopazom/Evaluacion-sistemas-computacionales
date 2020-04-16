@@ -3,7 +3,7 @@
     $password="password";
     $userName="username";
     //Crear conexion
-    $conexion = new mysqli_connect($host,$userName,$password); 
+    $conexion = mysqli_connect($host,$userName,$password); 
 
     //verificar conexion
     if ($conexion->connect_error) {

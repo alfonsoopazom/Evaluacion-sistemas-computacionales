@@ -12,7 +12,7 @@
         <img src="imagenes/logoUcen.png" alt="No se encontro la imagen" width="80" height="80">
 
     </header>
-    <form class ="box" action="php/conexion.php" method="POST">
+    <form class ="box" action="inicio.html" method="POST">
         <h1>Registrate</h1>
         <input type="text" name="nusuario" placeholder="nombre usuario">
         <input type="text" name="correo" placeholder="ingrese correo">
@@ -21,5 +21,23 @@
         <input type="submit" name="boton" value="Enviar">
         
     </form>
+     
+
+
+    <?php
+        $host="localhost";
+        $password="password";
+        $userName="username";
+        //Crear conexion
+        $conexion = mysqli_connect($host,$userName,$password); 
+
+        //verificar conexion
+        if ($conexion->connect_error) {
+        die("Connection failed: " . $conexion->mysqli_connect_error());
+        } 
+        echo "Conexion correcta";
+    ?>
+
+
 </body>
 </html>
