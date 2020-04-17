@@ -37,7 +37,7 @@
           echo '<script language="javascript"> alert("Usuario no Encontrado");
                 </script>';
         }
-        mysqli_close($conexion);
+        //mysqli_close($conexion);
     }
   ?>
   <?php
@@ -59,22 +59,30 @@
   ?>
   <?php
     //Registro de logeo del usuario 
-    //include 'php/conexion.php';
+    include 'php/conexion.php';
     //session_start();
-    /*if (isset($_POST['user'])){
-      $correo= $_POST['user'];
-      $fecha =date('Y-m-d');
 
-      $sql1="SELECT usuario_id FROM usuario WHERE correo='$correo_usuario'";
-      $consulta= mysqli_query($conexion,$sql1);
-      $logeoID = mysqli_fetch_row($sql1);
-  
-      $sql= "INSERT INTO logeos(correo,hora) 
-             VALUES('$correo_usuario','$fecha')";
-      $consulta = mysqli_query($conexion,$sql);
+    if (isset($_POST['user'])){
+
+      $correo_usuario=$_POST['user'];
+      $fecha =date('Y-n-d');
+      $hora =date('G:i:s');
+
+      //echo '$fecha';
+      //echo '$hora';
+
+      $sqlconsulta="SELECT * FROM usuario WHERE correo='$correo_usuario'";
+      $consulta= mysqli_query($conexion,$sqlconsulta);
+      $datos = mysqli_fetch_row($consulta);
+   
+      $sql= "INSERT INTO logeos(correo,hora,usuario_id,fecha) 
+             VALUES('$correo_usuario','$hora','$datos[0]','$fecha')";
+      $consulta1 = mysqli_query($conexion,$sql);
       mysqli_close($conexion);
-    }*/
+
+    }
   ?>
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #0040FF;">
     <div class="container">
