@@ -11,23 +11,11 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="css/blog-home.css" rel="stylesheet">
+  <script src="js/funciones.js"></script>
 </head>
 
 <body>
-  <?php
-    //  Registro de logeo del usuario 
-    include 'php/conexion.php';
-    session_start();
-    if (isset($_POST['user'])){
-
-      $correo_usuario = $_POST['user'];
-      $fecha =date('Y-m-d');
-      $sql1= "INSERT INTO logeos(correo,hora) VALUES('$correo_usuario','$fecha')";
-      $consulta = mysqli_query($conexion,$sql1);
-      
-      mysqli_close($conexion);
-    }
-  ?>
+  
   <?php
 
     //Validacion de usuario registrado
@@ -53,7 +41,7 @@
     }
   ?>
   <?php
-    // Escrip para el registro de un usuario
+    // Script para el registro de un usuario
     include 'php/conexion.php';
 
     if (isset($_POST['nusuario']) && isset($_POST['correo']) && isset($_POST['contrasena']) && isset($_POST['contrasena1'])) {
@@ -61,13 +49,31 @@
         $correo =$_POST['correo'];
         $contrasena =$_POST['contrasena'];
         $contrasena1 =$_POST['contrasena1'];
-    
+       
         $insertar= "INSERT INTO usuario (nombre_usuario,correo,contrasena,contrasena2) 
                     VALUES ('$usuario','$correo','$contrasena','$contrasena1')";
         $resultado = mysqli_query($conexion,$insertar);
         mysqli_close($conexion);
       }
         
+  ?>
+  <?php
+    //Registro de logeo del usuario 
+    //include 'php/conexion.php';
+    //session_start();
+    /*if (isset($_POST['user'])){
+      $correo= $_POST['user'];
+      $fecha =date('Y-m-d');
+
+      $sql1="SELECT usuario_id FROM usuario WHERE correo='$correo_usuario'";
+      $consulta= mysqli_query($conexion,$sql1);
+      $logeoID = mysqli_fetch_row($sql1);
+  
+      $sql= "INSERT INTO logeos(correo,hora) 
+             VALUES('$correo_usuario','$fecha')";
+      $consulta = mysqli_query($conexion,$sql);
+      mysqli_close($conexion);
+    }*/
   ?>
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #0040FF;">
@@ -102,8 +108,8 @@
       <!-- Blog Entries Column -->
       <div class="col-md-8">
 
-        <h1 class="my-4">Page Heading
-          <small>Secondary Text</small>
+        <h1 class="my-4">Ultimos Post
+          <!--<small>Secondary Text</small>-->
         </h1>
 
         <!-- Blog Post -->
@@ -111,15 +117,17 @@
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
-            <h2 class="card-title">Post Title</h2>
+            <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
             <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
 
           </div>
           <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
+          <script>
+              horaActual();
+          </script> by
+            <a href="#">Nombre del usuario</a> 
           </div>
         </div>
       </form>
@@ -129,15 +137,15 @@
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
-            <h2 class="card-title">Post Title</h2>
+            <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
             <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
 
           </div>
           <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
+            <script> horaActual();</script> by
+            <a href="#">Nombre del usuario</a>
           </div>
         </div>
       </form>
@@ -147,14 +155,14 @@
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
-            <h2 class="card-title">Post Title</h2>
+            <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
             <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
           </div>
           <div class="card-footer text-muted">
-            Posted on January 1, 2017 by
-            <a href="#">Start Bootstrap</a>
+          <script> horaActual();</script> by
+            <a href="#">Nombre del usuario</a>
           </div>
         </div>
       </form>

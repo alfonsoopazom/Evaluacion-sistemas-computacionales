@@ -17,8 +17,8 @@
 
     <form class ="box" action="bloghome.php" method="POST" id="frmRegistro" onsubmit="return validar();">
         <h1>Registrate</h1>
-        <input type="text" name="nusuario" id="usuario" placeholder="nombre usuario" require>
-        <input type="email" name="correo" id="correo" placeholder="ingrese correo" require>
+        <input type="text" name="nusuario" id="usuario" placeholder="Nombre usuario" require>
+        <input type="email" name="correo" id="correo" placeholder="Ingrese correo" require>
         <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" require>
         <input type="password" name="contrasena1" id="contrasena1" placeholder="Misma contraseña" require>
         <input type="submit" name="boton" value="Enviar" id="registro">
