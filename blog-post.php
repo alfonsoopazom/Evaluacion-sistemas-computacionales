@@ -15,6 +15,7 @@
 
   <!-- Custom styles for this template -->
   <link href="css/blog-post.css" rel="stylesheet">
+  <script src="js/funciones.js" ></script>
 
 </head>
 
@@ -38,7 +39,10 @@
             <a class="nav-link" href="#">Usuario</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Salir</a>
+            <a class="nav-link" href="#" id="volver">
+              <script> redireccionarLogin();</script>  
+              Salir
+            </a>
           </li>
         </ul>
       </div>

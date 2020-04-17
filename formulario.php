@@ -10,7 +10,7 @@
 </head>
 <body>
     <header class="cabecera">
-        <h1 id="hola">Registro de Usuario</h1>
+        <h1 id="hola">Blog Evaluación de Sistemas Computacionales</h1>
         <img src="imagenes/logoUcen.png" alt="No se encontro la imagen" width="80" height="80">
 
     </header>

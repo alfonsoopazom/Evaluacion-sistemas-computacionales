@@ -93,7 +93,9 @@
             <a class="nav-link" href="#">Usuario</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Salir</a>
+           <a class="nav-link" href="#" id="volver">Salir
+            <script> redireccionarLogin(); </script>
+            </a>
           </li>
         </ul>
       </div>

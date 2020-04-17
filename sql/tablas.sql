@@ -18,4 +18,19 @@ CREATE TABLE logeos(
     FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
 );
 
+CREATE TABLE post(
+    id_post INT NOT NULL AUTO_INCREMENT,
+    post TEXT,
+    fecha_post VARCHAR(255),
+    id_usuario INT NOT NULL
+    PRIMARY KEY(id_post)
+);
 
+CREATE TABLE comentarios(
+    id_comentario INT NOT NULL AUTO_INCREMENT,
+    texto TEXT NOT NULL,
+    fecha VARCHAR(255) NOT NULL,
+    id_usuario INT NOT NULL,
+    PRIMARY KEY (id_comentario)
+
+);
