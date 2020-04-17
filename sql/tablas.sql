@@ -9,11 +9,12 @@ CREATE TABLE usuario(
 );
 
 CREATE TABLE logeos(
-    logeo_id INT NOT NULL,
-    nombre_usuario VARCHAR(255) NOT NULL,
+    logeo_id INT NOT NULL AUTO_INCREMENT,
     correo VARCHAR(255) NOT NULL,
-    hora DATETIME,
+    hora VARCHAR(255) NOT NULL,
     usuario_id INT,
     PRIMARY KEY (logeo_id),
     FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
 );
+
+
