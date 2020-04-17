@@ -115,14 +115,13 @@
         </h1>
 
         <!-- Blog Post -->
-      <form class ="box" action="blog-post.html" method="POST">  
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
-            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
+            <a href="blog-post.php" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
 
           </div>
           <div class="card-footer text-muted">
@@ -132,17 +131,15 @@
             <a href="#">Nombre del usuario</a> 
           </div>
         </div>
-      </form>
 
         <!-- Blog Post -->
-      <form class ="box" action="blog-post.html" method="POST">  
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
-            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
+            <a href="blog-post.php" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
 
           </div>
           <div class="card-footer text-muted">
@@ -150,24 +147,21 @@
             <a href="#">Nombre del usuario</a>
           </div>
         </div>
-      </form>
 
         <!-- Blog Post -->
-      <form class ="box" action="blog-post.html" method="POST">  
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
-            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
+            <a href="blog-post.php" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
           </div>
           <div class="card-footer text-muted">
           <script> horaActual();</script> by
             <a href="#">Nombre del usuario</a>
           </div>
         </div>
-      </form>
 
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
