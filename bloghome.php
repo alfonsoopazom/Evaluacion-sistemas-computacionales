@@ -37,7 +37,7 @@
           echo '<script language="javascript"> alert("Usuario no Encontrado");
                 </script>';
         }
-        mysqli_close($conexion);
+        //mysqli_close($conexion);
     }
   ?>
   <?php
@@ -59,22 +59,30 @@
   ?>
   <?php
     //Registro de logeo del usuario 
-    //include 'php/conexion.php';
+    include 'php/conexion.php';
     //session_start();
-    /*if (isset($_POST['user'])){
-      $correo= $_POST['user'];
-      $fecha =date('Y-m-d');
 
-      $sql1="SELECT usuario_id FROM usuario WHERE correo='$correo_usuario'";
-      $consulta= mysqli_query($conexion,$sql1);
-      $logeoID = mysqli_fetch_row($sql1);
-  
-      $sql= "INSERT INTO logeos(correo,hora) 
-             VALUES('$correo_usuario','$fecha')";
-      $consulta = mysqli_query($conexion,$sql);
+    if (isset($_POST['user'])){
+
+      $correo_usuario=$_POST['user'];
+      $fecha =date('Y-n-d');
+      $hora =date('G:i:s');
+
+      //echo '$fecha';
+      //echo '$hora';
+
+      $sqlconsulta="SELECT * FROM usuario WHERE correo='$correo_usuario'";
+      $consulta= mysqli_query($conexion,$sqlconsulta);
+      $datos = mysqli_fetch_row($consulta);
+   
+      $sql= "INSERT INTO logeos(correo,hora,usuario_id,fecha) 
+             VALUES('$correo_usuario','$hora','$datos[0]','$fecha')";
+      $consulta1 = mysqli_query($conexion,$sql);
       mysqli_close($conexion);
-    }*/
+
+    }
   ?>
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #0040FF;">
     <div class="container">
@@ -115,14 +123,13 @@
         </h1>
 
         <!-- Blog Post -->
-      <form class ="box" action="blog-post.html" method="POST">  
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
-            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
+            <a href="blog-post.php" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
 
           </div>
           <div class="card-footer text-muted">
@@ -132,17 +139,15 @@
             <a href="#">Nombre del usuario</a> 
           </div>
         </div>
-      </form>
 
         <!-- Blog Post -->
-      <form class ="box" action="blog-post.html" method="POST">  
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
-            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
+            <a href="blog-post.php" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
 
           </div>
           <div class="card-footer text-muted">
@@ -150,24 +155,21 @@
             <a href="#">Nombre del usuario</a>
           </div>
         </div>
-      </form>
 
         <!-- Blog Post -->
-      <form class ="box" action="blog-post.html" method="POST">  
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
-            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
+            <a href="blog-post.php" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
           </div>
           <div class="card-footer text-muted">
           <script> horaActual();</script> by
             <a href="#">Nombre del usuario</a>
           </div>
         </div>
-      </form>
 
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">

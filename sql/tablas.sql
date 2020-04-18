@@ -14,6 +14,7 @@ CREATE TABLE logeos(
     correo VARCHAR(255) NOT NULL,
     hora VARCHAR(255) NOT NULL,
     usuario_id INT NOT NULL,
+    fecha VARCHAR(50) NOT NULL,
     PRIMARY KEY (logeo_id),
     FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
 );
