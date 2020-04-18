@@ -12,12 +12,12 @@
   <!-- Custom styles for this template -->
   <link href="css/blog-home.css" rel="stylesheet">
   <script src="js/funciones.js"></script>
+  <script src="js/validarLogin.js"></script>
 </head>
 
 <body>
   
   <?php
-
     //Validacion de usuario registrado
     include 'php/conexion.php';
 
@@ -27,19 +27,22 @@
 
         $sql= "SELECT * FROM usuario WHERE correo ='$correo_ingreso' AND contrasena ='$password'";
         $consulta = mysqli_query($conexion,$sql);
-        $prueba = mysqli_num_rows($consulta);
-              
-        if ($prueba !=0) {
-          //echo "Usuario Encontrado";
-        }else {
-          //redirecciona hacia atras si el usuario ingresado no es valido
-          header("Location: inicio.php");
-          echo '<script language="javascript"> alert("Usuario no Encontrado");
-                </script>';
+        $prueba = mysqli_fetch_row($consulta);
+        
+        //Se valida si el correo o la contraseñas ingresadas son correctas.
+        //En el caso de ser una incorrecta, se redirecciona a la pagina de inicio y se emite un Alert
+        if ($prueba[2]==$correo_ingreso ){
+          echo("<script> alert('Usuario encontrado');</script>");
+        }else if($prueba[3]==$password){
+            echo("<script> alert('Contraseña correcta');</script>");
+          }else{//redirecciona hacia atras si el usuario ingresado no es valido
+          echo("<script> alert('Usuario o Contraseña incorrecta');</script>");
+          echo("<script> window.location.href='inicio.php'</script> ");
         }
-        //mysqli_close($conexion);
+        mysqli_close($conexion);
     }
   ?>
+  
   <?php
     // Script para el registro de un usuario
     include 'php/conexion.php';
@@ -61,20 +64,16 @@
     //Registro de logeo del usuario 
     include 'php/conexion.php';
     //session_start();
-
     if (isset($_POST['user'])){
 
       $correo_usuario=$_POST['user'];
       $fecha =date('Y-n-d');
       $hora =date('G:i:s');
 
-      //echo '$fecha';
-      //echo '$hora';
-
       $sqlconsulta="SELECT * FROM usuario WHERE correo='$correo_usuario'";
       $consulta= mysqli_query($conexion,$sqlconsulta);
       $datos = mysqli_fetch_row($consulta);
-   
+      
       $sql= "INSERT INTO logeos(correo,hora,usuario_id,fecha) 
              VALUES('$correo_usuario','$hora','$datos[0]','$fecha')";
       $consulta1 = mysqli_query($conexion,$sql);
@@ -98,7 +97,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="usuario.php">Usuario</a>
+            <a class="nav-link" href="#">Usuario</a>
           </li>
           <li class="nav-item">
            <a class="nav-link" href="#" id="volver">Salir
@@ -123,53 +122,59 @@
         </h1>
 
         <!-- Blog Post -->
+      <form class ="box" action="blog-post.html" method="POST">  
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
-            <a href="blog-post.php" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
+            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
 
           </div>
           <div class="card-footer text-muted">
           <script>
               horaActual();
           </script> by
-            <a href="usuario.php">Nombre del usuario</a> 
+            <a href="#">Nombre del usuario</a> 
           </div>
         </div>
+      </form>
 
         <!-- Blog Post -->
+      <form class ="box" action="blog-post.html" method="POST">  
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
-            <a href="blog-post.php" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
+            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
 
           </div>
           <div class="card-footer text-muted">
             <script> horaActual();</script> by
-            <a href="usuario.php">Nombre del usuario</a>
+            <a href="#">Nombre del usuario</a>
           </div>
         </div>
+      </form>
 
         <!-- Blog Post -->
+      <form class ="box" action="blog-post.html" method="POST">  
         <div class="card mb-4">
           <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
           <div class="card-body">
             <h2 class="card-title">Titulo del post</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
 
-            <a href="blog-post.php" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
+            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
           </div>
           <div class="card-footer text-muted">
           <script> horaActual();</script> by
-            <a href="usuario.php">Nombre del usuario</a>
+            <a href="#">Nombre del usuario</a>
           </div>
         </div>
+      </form>
 
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
@@ -193,17 +198,11 @@
             <div class="input-group">
               <input type="text" class="form-control" placeholder="...">
               <span class="input-group-btn">
-                <button type="submit" class="btn btn-primary" style="background-color: #0040FF;">Ir</button>
+
+                <button class="btn btn-secondary" type="button" style="background-color: #0040FF;">Ir</button>
+
               </span>
             </div>
-          </div>
-        </div>
-        <div class="card my-4">
-          <h5 class="card-header">Crear Post</h5>
-          <div class="card-body">
-             <span class="input-group-btn">
-                <a class="btn btn-primary" href="post.php" style="background-color: #0040FF" role="button"> Crear</a>
-              </span>
           </div>
         </div>
 
