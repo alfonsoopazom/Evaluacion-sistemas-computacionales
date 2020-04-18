@@ -98,7 +98,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Usuario</a>
+            <a class="nav-link" href="usuario.php">Usuario</a>
           </li>
           <li class="nav-item">
            <a class="nav-link" href="#" id="volver">Salir
@@ -136,7 +136,7 @@
           <script>
               horaActual();
           </script> by
-            <a href="#">Nombre del usuario</a> 
+            <a href="usuario.php">Nombre del usuario</a> 
           </div>
         </div>
 
@@ -152,7 +152,7 @@
           </div>
           <div class="card-footer text-muted">
             <script> horaActual();</script> by
-            <a href="#">Nombre del usuario</a>
+            <a href="usuario.php">Nombre del usuario</a>
           </div>
         </div>
 
@@ -167,7 +167,7 @@
           </div>
           <div class="card-footer text-muted">
           <script> horaActual();</script> by
-            <a href="#">Nombre del usuario</a>
+            <a href="usuario.php">Nombre del usuario</a>
           </div>
         </div>
 
@@ -193,11 +193,17 @@
             <div class="input-group">
               <input type="text" class="form-control" placeholder="...">
               <span class="input-group-btn">
-
-                <button class="btn btn-secondary" type="button" style="background-color: #0040FF;">Ir</button>
-
+                <button type="submit" class="btn btn-primary" style="background-color: #0040FF;">Ir</button>
               </span>
             </div>
+          </div>
+        </div>
+        <div class="card my-4">
+          <h5 class="card-header">Crear Post</h5>
+          <div class="card-body">
+             <span class="input-group-btn">
+                <button class="btn btn-primary" style="background-color: #0040FF;" type="button">Crear</button>
+              </span>
           </div>
         </div>
 
