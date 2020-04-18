@@ -40,7 +40,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#" id="volver">
-              <script> redireccionarLogin();</script>  
+              <script> redireccionarLogin();</script>
               Salir
             </a>
           </li>
@@ -185,7 +185,14 @@
             </div>
           </div>
         </div>
-
+        <div class="card my-4">
+          <h5 class="card-header">Crear Post</h5>
+          <div class="card-body">
+             <span class="input-group-btn">
+                <button class="btn btn-primary" style="background-color: #0040FF;" type="button">Crear</button>
+              </span>
+          </div>
+        </div>
       </div>
 
     </div>
