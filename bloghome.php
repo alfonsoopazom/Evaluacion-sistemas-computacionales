@@ -202,7 +202,7 @@
           <h5 class="card-header">Crear Post</h5>
           <div class="card-body">
              <span class="input-group-btn">
-                <button class="btn btn-primary" style="background-color: #0040FF;" type="button">Crear</button>
+                <a class="btn btn-primary" href="post.php" style="background-color: #0040FF" role="button"> Crear</a>
               </span>
           </div>
         </div>
