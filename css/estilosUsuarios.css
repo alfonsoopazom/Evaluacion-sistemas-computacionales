@@ -1,0 +1,103 @@
+body{
+    background: -webkit-linear-gradient(left, #3931af, #00c6ff);
+}
+
+.container{
+    height: 600px;/*El alto de la pagina */
+    /*grid-template-rows: 3fr 2fr;*/
+    /*column-gap: 10px;
+    row-gap: 10px;*/
+    /*grid-auto-rows: 3fr 1fr;*/
+    grid-gap: 20px;/*separacion entre los box*/
+    display: grid;
+    /*grid-template-columns: 60% 30% 20% ;*/
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 2fr;
+    /* align-content: top;centra los div */
+    background: whitesmoke;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 5%;
+    border-radius: 24px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.box1{
+    height: 250px;
+    margin-left: 8%;
+    margin-top: 2.2%;
+    border-radius: 10px;
+    /* background: white; */
+} 
+
+.box1 img{
+    overflow: hidden;
+    position: absolute;
+    height:170px;
+    width:170px;
+    border-radius: 0px;
+    /* border: thin; */
+    /* border-color:black; */
+    /* border-style: double; */
+}
+.box1 .cambiar-img{
+    position: absolute;
+    overflow: hidden;
+    margin-top: 13%;
+    width:10%;
+    height: 5%;
+    border: none;
+    border-radius: 0;
+    font-size: 15px;
+    text-align: center;
+    background: #52606eb8;
+}
+
+.box1 .cambiar-img input{
+    position: relative;
+    opacity: 0;
+    right: 0%;
+    top: 0%;
+}
+.bio{
+    padding: 1%;
+}
+.bio .biografia{
+    margin-top:8%;
+    margin-left: 7%;
+   
+}
+.bio .datos p{
+    font-style: normal;
+    margin-left: 7%;
+    color: #495057;
+}
+.titulo{
+    margin-left: 10%;
+    margin-top: 5%;
+}
+.titulo .info{
+    margin-top: 58%;
+}
+.titulo a{
+    color: dodgerblue;
+}
+.volverHome button{
+    margin-top: 5%;
+    margin-left: 70%;
+    width: 20%;
+    height:6%;
+    background: grey;
+    border-radius: 7px;
+}
+
+.volverHome .volver-biografia h3{
+    margin-top: 10%;
+    margin-left: 3%;
+    
+}
+.volverHome .volver-biografia p{
+
+    margin-right: 7%;
+    margin-left: 3%;
+}

@@ -139,7 +139,7 @@
 
                            <div class="form-group" style="padding:12px;">
                             <textarea class="form-control animated" placeholder="Escribe tu Post"></textarea>
-                           <button class="btn btn-info pull-right" style="margin-top:10px" type="button">Publicar</button>
+                           <button class="btn btn-info pull-right" style="margin-top:10px ; background-color: #0040FF;"type="button">Publicar </button>
                            </div>
 
         </div>
