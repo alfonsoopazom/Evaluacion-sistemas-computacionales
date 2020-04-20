@@ -56,10 +56,36 @@
         $insertar= "INSERT INTO usuario (nombre_usuario,correo,contrasena,contrasena2)
                     VALUES ('$usuario','$correo','$contrasena','$contrasena1')";
         $resultado = mysqli_query($conexion,$insertar);
-        mysqli_close($conexion);
+
+         mysqli_close($conexion);
       }
 
   ?>
+
+  <?php
+    //Registro de Autores
+    include 'php/conexion.php';
+
+    if (isset($_POST['nusuario'])){
+
+      $usuario=$_POST['nusuario'];
+
+      $ID_autor="SELECT * FROM usuario WHERE nombre_usuario='$usuario'";
+      $consultaID =mysqli_query($conexion,$ID_autor);
+      $id_usuario = mysqli_fetch_row($consultaID);
+      
+      $agregarAutor = "INSERT INTO autores (nombre_autor,usuario_id)
+      VALUES('$usuario','$id_usuario[0]')";
+      $consultaAutor = mysqli_query($conexion,$agregarAutor);
+
+      mysqli_close($conexion);
+      
+    }else{
+      echo('No se encontro ID');
+    }
+  
+  ?>
+
   <?php
     //Registro de logeo del usuario
     include 'php/conexion.php';
@@ -180,10 +206,10 @@
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
           <li class="page-item">
-            <a class="page-link" href="#">&larr; Older</a>
+            <a class="page-link" href="#">&larr; Anteriores</a>
           </li>
           <li class="page-item disabled">
-            <a class="page-link" href="#">Newer &rarr;</a>
+            <a class="page-link" href="#">Siguientes &rarr;</a>
           </li>
         </ul>
 
@@ -212,6 +238,10 @@
               </span>
           </div>
         </div>
+        <div>
+          <img src="imagenes/logoUcen.png" alt="No se encontro la imagen" width="80" height="80">
+        </div>
+
       </div>
     </div>
     
