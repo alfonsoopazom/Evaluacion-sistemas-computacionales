@@ -40,11 +40,11 @@
         </div>
     </div>
     <div class="volverHome" aling="justify">
-        <a class="" href="#" id=""> Volver
-           
+        <a class="" href="" id="volverhome"> Volver
+           <script> home();</script>
         </a>
         <a href="#" id="volver">
-            <button class="" onclick="">Editar</button>
+           <button>Editar</button>
         </a>
         <div class="volver-biografia">
             <h3>Biografia</h3>
