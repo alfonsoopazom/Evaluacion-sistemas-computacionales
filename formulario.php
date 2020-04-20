@@ -18,19 +18,21 @@
     <form class ="box" action="bloghome.php" method="POST" id="frmRegistro" onsubmit="return validar();">
         <h1>Registrate</h1>
         <input type="text" name="nusuario" id="usuario" placeholder="Nombre usuario" require>
+        <input type="text" name="nombre" id="usuario" placeholder="Nombre" require>
+        <input type="text" name="apellido" id="usuario" placeholder="Apellido" require>
         <input type="email" name="correo" id="correo" placeholder="Ingrese correo" require>
         <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" require>
-        <input type="password" name="contrasena1" id="contrasena1" placeholder="Misma contraseña" require>
+        <input type="password" name="contrasena1" id="contrasena1" placeholder="Repita contraseña" require>
         <input type="submit" name="boton" value="Enviar" id="registro">
     </form>
     <!-- boton para volver al login-->
     <form class="btn1" action="inicio.php">
         <div>
-            <input type="submit" name="boton1" value="Log In"></input>     
+            <input type="submit" name="boton1" value="Log In"></input>
         </div>
     </form>
-    
 
-    
+
+
 </body>
 </html>
