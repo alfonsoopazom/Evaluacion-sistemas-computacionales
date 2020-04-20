@@ -170,7 +170,7 @@
 
       </div>
 
-      <!-- Sidebar Widgets Column -->
+      <!-- Sidebar Widgets Columnnn -->
       <div class="col-md-4">
 
         <!-- Search Widget -->

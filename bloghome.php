@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  
+
   <?php
 
     //Validacion de usuario registrado
@@ -28,7 +28,7 @@
         $sql= "SELECT * FROM usuario WHERE correo ='$correo_ingreso' AND contrasena ='$password'";
         $consulta = mysqli_query($conexion,$sql);
         $prueba = mysqli_num_rows($consulta);
-              
+
         if ($prueba !=0) {
           //echo "Usuario Encontrado";
         }else {
@@ -49,16 +49,16 @@
         $correo =$_POST['correo'];
         $contrasena =$_POST['contrasena'];
         $contrasena1 =$_POST['contrasena1'];
-       
-        $insertar= "INSERT INTO usuario (nombre_usuario,correo,contrasena,contrasena2) 
+
+        $insertar= "INSERT INTO usuario (nombre_usuario,correo,contrasena,contrasena2)
                     VALUES ('$usuario','$correo','$contrasena','$contrasena1')";
         $resultado = mysqli_query($conexion,$insertar);
         mysqli_close($conexion);
       }
-        
+
   ?>
   <?php
-    //Registro de logeo del usuario 
+    //Registro de logeo del usuario
     include 'php/conexion.php';
     //session_start();
 
@@ -74,8 +74,8 @@
       $sqlconsulta="SELECT * FROM usuario WHERE correo='$correo_usuario'";
       $consulta= mysqli_query($conexion,$sqlconsulta);
       $datos = mysqli_fetch_row($consulta);
-   
-      $sql= "INSERT INTO logeos(correo,hora,usuario_id,fecha) 
+
+      $sql= "INSERT INTO logeos(correo,hora,usuario_id,fecha)
              VALUES('$correo_usuario','$hora','$datos[0]','$fecha')";
       $consulta1 = mysqli_query($conexion,$sql);
       mysqli_close($conexion);
@@ -136,7 +136,7 @@
           <script>
               horaActual();
           </script> by
-            <a href="usuario.php">Nombre del usuario</a> 
+            <a href="usuario.php">Nombre del usuario</a>
           </div>
         </div>
 
