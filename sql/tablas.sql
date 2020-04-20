@@ -1,12 +1,14 @@
-
 /*Creacion de tablas de usuario*/
 CREATE TABLE usuario(
     usuario_id INT NOT NULL AUTO_INCREMENT,
     nombre_usuario VARCHAR(255) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    apellido VARCHAR(255) NOT NULL,
     correo VARCHAR(255) NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
     contrasena2 VARCHAR(255) NOT NULL,
-    fecha_creacion VARCHAR(250) NOT NULL,
+    fecha_registro VARCHAR(250) NOT NULL,
+    hora_registro VARCHAR(255) NOT NULL,
     PRIMARY KEY (usuario_id)
 );
 
@@ -34,9 +36,10 @@ CREATE TABLE comentarios(
     texto TEXT NOT NULL,
     fecha VARCHAR(255) NOT NULL,
     id_usuario INT NOT NULL,
+    id_post INT NOT NULL,
     PRIMARY KEY (id_comentario)
     FOREIGN KEY id_usuario REFERENCES usuario(id_usuario)
-
+    FOREIGN KEY id_post REFERENCES post(id_post)
 );
 CREATE TABLE autores(
     id_autor INT NOT NULL AUTO_INCREMENT,
