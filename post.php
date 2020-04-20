@@ -8,6 +8,7 @@
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
         .animated {
+			
     		  -webkit-transition: height 0.2s;
 				  -moz-transition: height 0.2s;
 				  transition: height 0.2s;

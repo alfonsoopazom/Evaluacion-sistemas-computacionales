@@ -25,7 +25,6 @@ function irausuario(){
 
 function home(){
     var home;
-    const newLocal = 'volverhome';
     home= document.getElementById(newLocal);
     home.addEventListener('click',function(event){
         event.preventDefault();

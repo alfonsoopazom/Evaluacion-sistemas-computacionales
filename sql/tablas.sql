@@ -6,6 +6,7 @@ CREATE TABLE usuario(
     correo VARCHAR(255) NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
     contrasena2 VARCHAR(255) NOT NULL,
+    fecha_creacion VARCHAR(250) NOT NULL,
     PRIMARY KEY (usuario_id)
 );
 
@@ -25,6 +26,7 @@ CREATE TABLE post(
     fecha_post VARCHAR(255),
     id_usuario INT NOT NULL
     PRIMARY KEY(id_post)
+    
 );
 
 CREATE TABLE comentarios(
@@ -34,4 +36,12 @@ CREATE TABLE comentarios(
     id_usuario INT NOT NULL,
     PRIMARY KEY (id_comentario)
 
+);
+CREATE TABLE autores(
+    id_autor INT NOT NULL AUTO_INCREMENT,
+    nombre_autor VARCHAR NOT NULL,
+    edad  INT NOT NULL,
+    usuario_id INT,
+    PRIMARY KEY (id_autor),
+    FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
 );

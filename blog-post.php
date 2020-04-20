@@ -185,7 +185,8 @@
             </div>
           </div>
         </div>
-        <div class="card my-4">
+
+        <!-- <div class="card my-4">
           <h5 class="card-header">Crear Post</h5>
           <div class="card-body">
              <span class="input-group-btn">
@@ -193,7 +194,7 @@
               </span>
           </div>
         </div>
-      </div>
+      </div> -->
 
     </div>
     <!-- /.row -->

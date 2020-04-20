@@ -97,7 +97,8 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Usuario</a>
+            <a class="nav-link" id ="usuario-id" href="#">Usuario</a>
+            <script>irausuario();</script>
           </li>
           <li class="nav-item">
            <a class="nav-link" href="#" id="volver">Salir
@@ -190,7 +191,6 @@
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
-
         <!-- Search Widget -->
         <div class="card my-4">
           <h5 class="card-header">Buscar</h5>
@@ -198,31 +198,28 @@
             <div class="input-group">
               <input type="text" class="form-control" placeholder="...">
               <span class="input-group-btn">
-
                 <button class="btn btn-secondary" type="button" style="background-color: #0040FF;">Ir</button>
-
               </span>
             </div>
           </div>
         </div>
 
-      </div>
-
-    </div>
-
-        <!-- Side Widget -->
         <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
+          <h5 class="card-header">Crear Post</h5>
           <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+             <span class="input-group-btn">
+             <a class="btn btn-primary" href="post.php" style="background-color: #0040FF" role="button"> Crear</a>
+              </span>
           </div>
         </div>
-
       </div>
+    </div>
+    
 
+        
+      </div>
     </div>
     <!-- /.row -->
-
   </div>
   <!-- /.container -->
 
