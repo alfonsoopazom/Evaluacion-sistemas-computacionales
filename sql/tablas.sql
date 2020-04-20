@@ -22,11 +22,11 @@ CREATE TABLE logeos(
 
 CREATE TABLE post(
     id_post INT NOT NULL AUTO_INCREMENT,
-    post TEXT,
+    post TEXT NOT NULL,
     fecha_post VARCHAR(255),
-    id_usuario INT NOT NULL
+    id_autor INT NOT NULL,
     PRIMARY KEY(id_post)
-    
+    FOREIGN KEY id_autor REFERENCES autores(id_autor)  
 );
 
 CREATE TABLE comentarios(
@@ -35,12 +35,12 @@ CREATE TABLE comentarios(
     fecha VARCHAR(255) NOT NULL,
     id_usuario INT NOT NULL,
     PRIMARY KEY (id_comentario)
+    FOREIGN KEY id_usuario REFERENCES usuario(id_usuario)
 
 );
 CREATE TABLE autores(
     id_autor INT NOT NULL AUTO_INCREMENT,
     nombre_autor VARCHAR NOT NULL,
-    edad  INT NOT NULL,
     usuario_id INT,
     PRIMARY KEY (id_autor),
     FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
