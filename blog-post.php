@@ -2,25 +2,19 @@
 <html lang="en">
 
 <head>
-
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-
   <title>Blog</title>
-
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
   <!-- Custom styles for this template -->
   <link href="css/blog-post.css" rel="stylesheet">
   <script src="js/funciones.js" ></script>
-
 </head>
 
 <body>
-
 <?php
     //Enviar post a la base de datos
     include 'php/conexion.php';
@@ -28,14 +22,11 @@
     if (isset($_POST['titulo']) && isset($_POST['cuerpo'])){
 
         $titulo =$_POST['titulo'];
-        //$resumen =$_POST['resumen'];
         $cuerpo =$_POST['cuerpo'];
         $fecha = date('Y-n-d');
         $nombre=$_COOKIE['cookieU'];
-
         //echo("Valor de la cookie: ".$nombre." ");
         //echo("Fecha de creacion: ".$fecha);
-
         $id_autores = "SELECT id_autor FROM autores WHERE nombre_autor='$nombre'";
         $consultaAutor =mysqli_query($conexion,$id_autores);
         $dato=mysqli_fetch_row($consultaAutor);
@@ -46,17 +37,10 @@
 
         $ingresar = "INSERT INTO post(post,fecha_post,id_autor) VALUES ('$cuerpo','$fecha','$dato[0]')";
         $consulta = mysqli_query($conexion,$ingresar);
-        
         mysqli_close($conexion);
     }else{
-      
       echo("No se ingresaron datos");
-      // echo($titulo);
-      // echo($resumen);
-      // echo($cuerpo );
-      // echo($fecha );
     }
-   
 ?>
 
 
@@ -87,44 +71,27 @@
       </div>
     </div>
   </nav>
-
-
-
-
-
-
   <!-- Page Content -->
   <div class="container">
-
     <div class="row">
-
       <!-- Post Content Column -->
       <div class="col-lg-8">
-
         <!-- Title -->
         <h1 class="mt-4">Literatura infantil, clave para resolver conflictos de niños y niñas</h1>
-
         <!-- Author -->
         <p class="lead">
           por
           <a href="#">Laura Carolina Lozano Chaparro</a>
         </p>
-
         <hr>
-
         <!-- Date/Time -->
         <p>Posteado el 15 de Abril de 2020 a las 21:02</p>
-
         <hr>
-
         <!-- Preview Image -->
         <img class="img-fluid rounded" src="https://www.javeriana.edu.co/pesquisa/wp-content/uploads/2019/10/banner-articulo-ni%C3%B1a-bonita-900x300.jpg" alt="">
-
         <hr>
-
         <!-- Post Content -->
         <p class="lead">En un trabajo conjunto, dos psicólogos de la Pontificia Universidad Javeriana encuentran en la lectura una posibilidad para ayudar en la resolución de problemas a niños y niñas desde transición hasta quinto de primaria.</p>
-
         <blockquote class="blockquote">
           <p>
             “Había una vez una niña bonita, bien bonita.
@@ -229,20 +196,8 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="card my-4">
-          <h5 class="card-header">Crear Post</h5>
-          <div class="card-body">
-             <span class="input-group-btn">
-             <a class="btn btn-primary" href="post.php" style="background-color: #0040FF" role="button"> Crear</a>
-              </span>
-          </div>
-        </div>
-      </div> -->
-
     </div>
     <!-- /.row -->
-
   </div>
   <!-- /.container -->
 
@@ -259,5 +214,4 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
-
 </html>
