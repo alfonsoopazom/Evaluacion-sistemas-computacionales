@@ -21,6 +21,45 @@
 
 <body>
 
+<?php
+    //Enviar post a la base de datos
+    include 'php/conexion.php';
+    
+    if (isset($_POST['titulo']) && isset($_POST['cuerpo'])){
+
+        $titulo =$_POST['titulo'];
+        //$resumen =$_POST['resumen'];
+        $cuerpo =$_POST['cuerpo'];
+        $fecha = date('Y-n-d');
+        $nombre=$_COOKIE['cookieU'];
+
+        //echo("Valor de la cookie: ".$nombre." ");
+        //echo("Fecha de creacion: ".$fecha);
+
+        $id_autores = "SELECT id_autor FROM autores WHERE nombre_autor='$nombre'";
+        $consultaAutor =mysqli_query($conexion,$id_autores);
+        $dato=mysqli_fetch_row($consultaAutor);
+        // echo($titulo);
+        // echo($resumen);
+        //echo($cuerpo);
+        echo('ID del autor: '.$dato[0]);
+
+        $ingresar = "INSERT INTO post(post,fecha_post,id_autor) VALUES ('$cuerpo','$fecha','$dato[0]')";
+        $consulta = mysqli_query($conexion,$ingresar);
+        
+        mysqli_close($conexion);
+    }else{
+      
+      echo("No se ingresaron datos");
+      // echo($titulo);
+      // echo($resumen);
+      // echo($cuerpo );
+      // echo($fecha );
+    }
+   
+?>
+
+
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #0040FF;">
     <div class="container">
@@ -48,6 +87,11 @@
       </div>
     </div>
   </nav>
+
+
+
+
+
 
   <!-- Page Content -->
   <div class="container">

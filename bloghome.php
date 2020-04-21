@@ -1,3 +1,19 @@
+
+<?php
+
+    //Cookie Usuario
+    $nombreU ="cookieU";
+    $usuario =$_POST['nombre'];
+    setcookie($nombreU,$usuario,time()+3600,"/");
+        //echo($usuario);
+        //echo($_COOKIE[$name]);
+    //Cookie Correo
+    $nombreC ="cookieC";
+    $correo =$_POST['correo'];
+    setcookie($nombreC,$correo,time()+3600,"/");
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +34,17 @@
 <body>
 
   <?php
-    // Script para el registro de un usuario
+    // // imprimir el valor de la Cookie ususario
+    // if(!isset($_COOKIE[$nombreU])) {
+    //   echo "Cookie :'" . $nombreU . "' is not set!";
+    // }else {
+    //   echo "Nombre de la Cookie:' ".$nombreU. "' is set!<br>";
+    //   echo "El valor es: " . $_COOKIE[$nombreU];
+    // }
+?>
+
+  <?php
+    // Script para el registro de un Usuario
     include 'php/conexion.php';
 
     if (isset($_POST['usuario']) && isset($_POST['correo']) && 
@@ -57,7 +83,9 @@
     if (isset($_POST['correo']) && $_POST['nombre']){
 
     $correo=$_POST['correo'];
-    $usuario = $_POST['nombre'];
+    $usuario =$_POST['nombre'];
+
+    echo("Nombre de la cuenta: ".$usuario);
 
     $ID_autor="SELECT usuario_id FROM usuario WHERE correo='$correo'";
     $consultaID =mysqli_query($conexion,$ID_autor);
