@@ -18,94 +18,134 @@
 <body>
 
   <?php
-    //Validacion de usuario registrado
-    include 'php/conexion.php';
-
-    if (isset($_POST['user']) && isset($_POST['password'])){
-        $correo_ingreso = $_POST['user'];
-        $password = $_POST['password'];
-
-        $sql= "SELECT * FROM usuario WHERE correo ='$correo_ingreso' AND contrasena ='$password'";
-        $consulta = mysqli_query($conexion,$sql);
-        $prueba = mysqli_fetch_row($consulta);
-
-        //Se valida si el correo o la contraseñas ingresadas son correctas.
-        //En el caso de ser una incorrecta, se redirecciona a la pagina de inicio y se emite un Alert
-        if ($prueba[2]==$correo_ingreso ){
-          echo("<script> alert('Usuario encontrado');</script>");
-        }else if($prueba[3]==$password){
-            echo("<script> alert('Contraseña correcta');</script>");
-          }else{//redirecciona hacia atras si el usuario ingresado no es valido
-          echo("<script> alert('Usuario o Contraseña incorrecta');</script>");
-          echo("<script> window.location.href='inicio.php'</script> ");
-        }
-        mysqli_close($conexion);
-    }
-  ?>
-
-  <?php
     // Script para el registro de un usuario
     include 'php/conexion.php';
 
-    if (isset($_POST['nusuario']) && isset($_POST['correo']) && isset($_POST['contrasena']) && isset($_POST['contrasena1'])) {
-        $usuario =$_POST['nusuario'];
+    if (isset($_POST['usuario']) && isset($_POST['correo']) && 
+        isset($_POST['nombre']) && isset($_POST['apellido']) && 
+        isset($_POST['contrasena'])){
+
+        $usuario =$_POST['usuario'];
+        $nombre =$_POST['nombre'];
+        $apellido =$_POST['apellido'];
         $correo =$_POST['correo'];
         $contrasena =$_POST['contrasena'];
-        $contrasena1 =$_POST['contrasena1'];
+        $fecha =date('Y-n-d');
+        $hora =date('G:i:s');
 
-        $insertar= "INSERT INTO usuario (nombre_usuario,correo,contrasena,contrasena2)
-                    VALUES ('$usuario','$correo','$contrasena','$contrasena1')";
+        // echo "hola: ".$usuario."\n";
+        // echo "Nombre: ".$nombre."\n";
+        // echo "Apellido: ".$apellido."\n";
+        // echo "Correo: ".$correo." \n";
+        // echo "Contraseña: ".$contrasena."\n";
+        // echo "Fecha: ".$fecha." \n";
+        // echo "Hora: ".$hora." \n";
+        
+        $insertar= "INSERT INTO usuario(nombre_usuario,nombre,apellido,correo,contrasena,fecha_registro,hora_registro)
+                    VALUES ('$usuario','$nombre','$apellido','$correo','$contrasena','$fecha','$hora')";
+
         $resultado = mysqli_query($conexion,$insertar);
 
-         mysqli_close($conexion);
+        mysqli_close($conexion);
       }
-
   ?>
 
   <?php
     //Registro de Autores
-    include 'php/conexion.php';
+     include 'php/conexion.php';
 
-    if (isset($_POST['nusuario'])){
+    if (isset($_POST['correo']) && $_POST['nombre']){
 
-      $usuario=$_POST['nusuario'];
+    $correo=$_POST['correo'];
+    $usuario = $_POST['nombre'];
 
-      $ID_autor="SELECT * FROM usuario WHERE nombre_usuario='$usuario'";
-      $consultaID =mysqli_query($conexion,$ID_autor);
-      $id_usuario = mysqli_fetch_row($consultaID);
+    $ID_autor="SELECT usuario_id FROM usuario WHERE correo='$correo'";
+    $consultaID =mysqli_query($conexion,$ID_autor);
+    $id_usuario = mysqli_fetch_row($consultaID);
       
-      $agregarAutor = "INSERT INTO autores (nombre_autor,usuario_id)
-      VALUES('$usuario','$id_usuario[0]')";
-      $consultaAutor = mysqli_query($conexion,$agregarAutor);
+    $agregarAutor = "INSERT INTO autores (nombre_autor,usuario_id)
+                    VALUES('$usuario','$id_usuario[0]')";
+    $consultaAutor = mysqli_query($conexion,$agregarAutor);
 
-      mysqli_close($conexion);
+    mysqli_close($conexion);
       
     }else{
-      echo('No se encontro ID');
+     //echo('No se encontro ID');
     }
   
   ?>
 
   <?php
     //Registro de logeo del usuario
-    include 'php/conexion.php';
+   include 'php/conexion.php';
     //session_start();
-    if (isset($_POST['user'])){
+    if (isset($_POST['user']) OR isset($_POST['correo'])){
 
-      $correo_usuario=$_POST['user'];
-      $fecha =date('Y-n-d');
-      $hora =date('G:i:s');
+      if (isset($_POST['user'])){
+         
+         $correo_usuario=$_POST['user'];
+         $fecha =date('Y-n-d');
+         $hora =date('G:i:s');
 
-      $sqlconsulta="SELECT * FROM usuario WHERE correo='$correo_usuario'";
-      $consulta= mysqli_query($conexion,$sqlconsulta);
-      $datos = mysqli_fetch_row($consulta);
+         // echo($correo_usuario);
 
-      $sql= "INSERT INTO logeos(correo,hora,usuario_id,fecha)
-             VALUES('$correo_usuario','$hora','$datos[0]','$fecha')";
-      $consulta1 = mysqli_query($conexion,$sql);
-      mysqli_close($conexion);
+         $sqlconsulta="SELECT usuario_id FROM usuario WHERE correo='$correo_usuario'";
+         $consulta= mysqli_query($conexion,$sqlconsulta);
+         $datos = mysqli_fetch_row($consulta);
+
+         $sql= "INSERT INTO logeos(correo,hora,usuario_id,fecha)
+              VALUES('$correo_usuario','$hora','$datos[0]','$fecha')";
+         $consulta1 = mysqli_query($conexion,$sql);
+         mysqli_close($conexion);
+
+        }else if(isset($_POST['correo'])){
+
+         $correo_usuario=$_POST['correo'];
+         $fecha =date('Y-n-d');
+         $hora =date('G:i:s');
+
+         // echo($correo_usuario);
+
+         $sqlconsulta="SELECT usuario_id FROM usuario WHERE correo='$correo_usuario'";
+         $consulta= mysqli_query($conexion,$sqlconsulta);
+         $datos = mysqli_fetch_row($consulta);
+
+         $sql= "INSERT INTO logeos(correo,hora,usuario_id,fecha)
+              VALUES('$correo_usuario','$hora','$datos[0]','$fecha')";
+         $consulta1 = mysqli_query($conexion,$sql);
+         mysqli_close($conexion);
+        }else {
+          echo("No se pudo logear el usuario");
+        }
+      
 
     }
+  ?>
+  <?php
+    //Validacion de usuario registrado
+    include 'php/conexion.php';
+
+    if (isset($_POST['user']) && isset($_POST['password'])){
+         
+         $correo_ingreso = $_POST['user'];
+         $password = $_POST['password'];
+
+         $sql= "SELECT * FROM usuario WHERE correo ='$correo_ingreso' AND contrasena ='$password'";
+         $consulta = mysqli_query($conexion,$sql);
+         $prueba = mysqli_fetch_row($consulta);
+
+         //Se valida si el correo o la contraseñas ingresadas son correctas.
+         //En el caso de ser una incorrecta, se redirecciona a la pagina de inicio y se emite un Alert
+         if ($prueba[4]==$correo_ingreso ){
+           echo("<script> alert('Usuario encontrado');</script>");
+         }else if($prueba[5]==$password){
+             echo("<script> alert('Contraseña correcta');</script>");
+           }else{//redirecciona hacia atras si el usuario ingresado no es valido
+           echo("<script> alert('Usuario o Contraseña incorrecta');</script>");
+           echo("<script> window.location.href='inicio.php'</script> ");
+         }
+         mysqli_close($conexion);
+   }
   ?>
 
   <!-- Navigation -->

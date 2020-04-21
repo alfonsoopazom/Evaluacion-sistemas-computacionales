@@ -6,11 +6,11 @@ CREATE TABLE usuario(
     apellido VARCHAR(255) NOT NULL,
     correo VARCHAR(255) NOT NULL,
     contrasena VARCHAR(255) NOT NULL,
-    contrasena2 VARCHAR(255) NOT NULL,
     fecha_registro VARCHAR(250) NOT NULL,
     hora_registro VARCHAR(255) NOT NULL,
     PRIMARY KEY (usuario_id)
 );
+ /*contrasena2 VARCHAR(255) NOT NULL,*/
 
 CREATE TABLE logeos(
     logeo_id INT NOT NULL AUTO_INCREMENT,
@@ -27,24 +27,25 @@ CREATE TABLE post(
     post TEXT NOT NULL,
     fecha_post VARCHAR(255),
     id_autor INT NOT NULL,
-    PRIMARY KEY(id_post)
-    FOREIGN KEY id_autor REFERENCES autores(id_autor)  
+    PRIMARY KEY(id_post),
+    FOREIGN KEY (id_autor) REFERENCES autores(id_autor)  
 );
-
 CREATE TABLE comentarios(
     id_comentario INT NOT NULL AUTO_INCREMENT,
     texto TEXT NOT NULL,
     fecha VARCHAR(255) NOT NULL,
     id_usuario INT NOT NULL,
     id_post INT NOT NULL,
-    PRIMARY KEY (id_comentario)
-    FOREIGN KEY id_usuario REFERENCES usuario(id_usuario)
-    FOREIGN KEY id_post REFERENCES post(id_post)
+    PRIMARY KEY (id_comentario),
+    FOREIGN KEY (id_usuario) REFERENCES usuario(usuario_id),
+    FOREIGN KEY (id_post) REFERENCES post(id_post)
 );
+
 CREATE TABLE autores(
     id_autor INT NOT NULL AUTO_INCREMENT,
-    nombre_autor VARCHAR NOT NULL,
-    usuario_id INT,
+    nombre_autor VARCHAR(255) NOT NULL,
+    usuario_id INT NOT null,
     PRIMARY KEY (id_autor),
     FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
 );
+
