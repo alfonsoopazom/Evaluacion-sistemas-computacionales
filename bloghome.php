@@ -1,17 +1,10 @@
 
 <?php
-
-    //Cookie Usuario
-    $nombreU ="cookieU";
-    $usuario =$_POST['nombre'];
-    setcookie($nombreU,$usuario,time()+3600,"/");
-        //echo($usuario);
-        //echo($_COOKIE[$name]);
-    //Cookie Correo
-    $nombreC ="cookieC";
-    $correo =$_POST['correo'];
-    setcookie($nombreC,$correo,time()+3600,"/");
-    
+      if (isset($_POST['correo'])) {
+        $nombreC ="cookieC";
+        $correo =$_POST['correo'];
+        setcookie($nombreC,$correo,time()+7200,"/");
+      }
 ?>
 
 <!DOCTYPE html>
@@ -34,16 +27,6 @@
 <body>
 
   <?php
-    // // imprimir el valor de la Cookie ususario
-    // if(!isset($_COOKIE[$nombreU])) {
-    //   echo "Cookie :'" . $nombreU . "' is not set!";
-    // }else {
-    //   echo "Nombre de la Cookie:' ".$nombreU. "' is set!<br>";
-    //   echo "El valor es: " . $_COOKIE[$nombreU];
-    // }
-?>
-
-  <?php
     // Script para el registro de un Usuario
     include 'php/conexion.php';
 
@@ -59,19 +42,10 @@
         $fecha =date('Y-n-d');
         $hora =date('G:i:s');
 
-        // echo "hola: ".$usuario."\n";
-        // echo "Nombre: ".$nombre."\n";
-        // echo "Apellido: ".$apellido."\n";
-        // echo "Correo: ".$correo." \n";
-        // echo "Contraseña: ".$contrasena."\n";
-        // echo "Fecha: ".$fecha." \n";
-        // echo "Hora: ".$hora." \n";
-        
         $insertar= "INSERT INTO usuario(nombre_usuario,nombre,apellido,correo,contrasena,fecha_registro,hora_registro)
                     VALUES ('$usuario','$nombre','$apellido','$correo','$contrasena','$fecha','$hora')";
 
         $resultado = mysqli_query($conexion,$insertar);
-
         mysqli_close($conexion);
       }
   ?>
@@ -80,25 +54,21 @@
     //Registro de Autores
      include 'php/conexion.php';
 
-    if (isset($_POST['correo']) && $_POST['nombre']){
+    if (isset($_POST['correo'])){
 
     $correo=$_POST['correo'];
-    $usuario =$_POST['nombre'];
-
-    echo("Nombre de la cuenta: ".$usuario);
-
-    $ID_autor="SELECT usuario_id FROM usuario WHERE correo='$correo'";
+  
+    $ID_autor="SELECT usuario_id, nombre_usuario FROM usuario WHERE correo='$correo'";
     $consultaID =mysqli_query($conexion,$ID_autor);
-    $id_usuario = mysqli_fetch_row($consultaID);
-      
+    $datos_usuario = mysqli_fetch_row($consultaID);
+    
     $agregarAutor = "INSERT INTO autores (nombre_autor,usuario_id)
-                    VALUES('$usuario','$id_usuario[0]')";
+                    VALUES('$datos_usuario[1]','$datos_usuario[0]')";
     $consultaAutor = mysqli_query($conexion,$agregarAutor);
-
     mysqli_close($conexion);
       
     }else{
-     //echo('No se encontro ID');
+     
     }
   
   ?>
@@ -107,15 +77,13 @@
     //Registro de logeo del usuario
    include 'php/conexion.php';
     //session_start();
-    if (isset($_POST['user']) OR isset($_POST['correo'])){
+    if (isset($_POST['correo']) OR isset($_POST['correo'])){
 
-      if (isset($_POST['user'])){
+      if (isset($_POST['correo'])){
          
-         $correo_usuario=$_POST['user'];
+         $correo_usuario=$_POST['correo'];
          $fecha =date('Y-n-d');
          $hora =date('G:i:s');
-
-         // echo($correo_usuario);
 
          $sqlconsulta="SELECT usuario_id FROM usuario WHERE correo='$correo_usuario'";
          $consulta= mysqli_query($conexion,$sqlconsulta);
@@ -132,8 +100,6 @@
          $fecha =date('Y-n-d');
          $hora =date('G:i:s');
 
-         // echo($correo_usuario);
-
          $sqlconsulta="SELECT usuario_id FROM usuario WHERE correo='$correo_usuario'";
          $consulta= mysqli_query($conexion,$sqlconsulta);
          $datos = mysqli_fetch_row($consulta);
@@ -145,23 +111,20 @@
         }else {
           echo("No se pudo logear el usuario");
         }
-      
-
     }
   ?>
   <?php
     //Validacion de usuario registrado
     include 'php/conexion.php';
 
-    if (isset($_POST['user']) && isset($_POST['password'])){
+    if (isset($_POST['correo']) && isset($_POST['password'])){
          
-         $correo_ingreso = $_POST['user'];
+         $correo_ingreso = $_POST['correo'];
          $password = $_POST['password'];
 
          $sql= "SELECT * FROM usuario WHERE correo ='$correo_ingreso' AND contrasena ='$password'";
          $consulta = mysqli_query($conexion,$sql);
          $prueba = mysqli_fetch_row($consulta);
-
          //Se valida si el correo o la contraseñas ingresadas son correctas.
          //En el caso de ser una incorrecta, se redirecciona a la pagina de inicio y se emite un Alert
          if ($prueba[4]==$correo_ingreso ){
@@ -186,18 +149,16 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Inicio
-              <span class="sr-only">(current)</span>
-            </a>
+            <a class="nav-link" id="inicio">Inicio</a>
+            <!-- <script>home();</script> -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" id ="usuario-id" href="#">Usuario</a>
+            <a class="nav-link" id ="usuario-id">Usuario</a>
             <script>irausuario();</script>
           </li>
           <li class="nav-item">
-           <a class="nav-link" href="#" id="volver">Salir
-            <script> redireccionarLogin(); </script>
-            </a>
+           <a class="nav-link" id="volver">Salir</a>
+            <script> redireccionarLogin();</script>
           </li>
         </ul>
       </div>

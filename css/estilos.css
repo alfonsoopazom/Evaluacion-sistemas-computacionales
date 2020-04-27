@@ -3,7 +3,7 @@
 
 header div img{
     display:block;
-    margin: auto;
+    margin: auto;   
 }
 
 header h1{
@@ -14,15 +14,15 @@ body{
     padding: 0;
     font-size: 10px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
+    
 }
 .cabecera h1{
     text-align: center;
 }
-/*Centrado de logo para el archivo formulario de registro*/
+/*Centrado de logo para l archivo formulario de registro*/
 .cabecera img{
     display: block;
-    margin-left: 10%;
+    margin: auto;
 }
 /*Estilo general del cuadro de login de archivo de inicio*/
 .box{
@@ -45,7 +45,7 @@ body{
     font-weight: 200px;
     font-style: unset;
     font-size: 25px;
-
+    
 }
 
 .box input[type="email"]{
@@ -78,7 +78,7 @@ body{
     color: white;
     border-radius: 24px;
     transition: 0.25s;
-}
+} 
 
 /*Efecto de los cuadros de textos*/
 .box input[type="text"]:focus , .box input[type="password"]:focus{
@@ -102,7 +102,7 @@ body{
     border-radius: 24px;
     transition: 0.25s;
     cursor: pointer;
-}
+}  
 
 /*Boton de registro*/
 .btn input[type="submit"]{
@@ -133,7 +133,7 @@ cursor: pointer;
     position: absolute;
     padding: 15px;
     display: block;
-    top: 9%;
+    top: 4%;
     left: 89%;
     background:#FB8309;
     width: 100px;

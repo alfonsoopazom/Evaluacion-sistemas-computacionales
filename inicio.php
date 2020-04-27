@@ -19,7 +19,7 @@
 
     <form class ="box" action="bloghome.php" method="POST" onsubmit="return validarLogin();"> <!--method="POST" -->
         <h1>login</h1>
-        <input type="text" name="user" id="user" placeholder="Correo">
+        <input type="text" name="correo" id="correo" placeholder="Correo">
         <input type="password" name="password" id ="pass" placeholder="Contraseña" require>
         <input type="submit" name="boton" value="Ingresar" require>
         

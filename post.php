@@ -24,9 +24,6 @@
     </div>
     
     <p>
-    <?php
-      //echo($_COOKIE['cookieU']);
-    ?>
     </p>
     
 </body>

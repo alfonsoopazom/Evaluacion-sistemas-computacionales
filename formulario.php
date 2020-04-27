@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +26,8 @@
         <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" require>
         <input type="submit" name="boton" value="Enviar" id="registro">
     </form>
+
+    
     <!-- boton para volver al login-->
     <form class="btn1" action="inicio.php">
         <div>

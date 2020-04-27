@@ -24,20 +24,27 @@
         $titulo =$_POST['titulo'];
         $cuerpo =$_POST['cuerpo'];
         $fecha = date('Y-n-d');
-        $nombre=$_COOKIE['cookieU'];
-        //echo("Valor de la cookie: ".$nombre." ");
-        //echo("Fecha de creacion: ".$fecha);
-        $id_autores = "SELECT id_autor FROM autores WHERE nombre_autor='$nombre'";
-        $consultaAutor =mysqli_query($conexion,$id_autores);
-        $dato=mysqli_fetch_row($consultaAutor);
-        // echo($titulo);
-        // echo($resumen);
-        //echo($cuerpo);
-        echo('ID del autor: '.$dato[0]);
+        $correoU=$_COOKIE['cookieC'];
+        
+        //echo($correoU);
+        //Obteniendo usuario_id
+        $id_usuario = "SELECT usuario_id FROM usuario 
+                       WHERE correo='$correoU'";
+        $consultaUsuario =mysqli_query($conexion,$id_usuario);
+        $id_u=mysqli_fetch_row($consultaUsuario);
+        
+        //echo("ID del usuario: ".$id_u[0]);
+        //Obteniendo el ID del autor
+        $id_autor = "SELECT id_autor FROM autores WHERE usuario_id='$id_u[0]'";
+        $consultaAutor = mysqli_query($conexion,$id_autor);
+        $id_Autor = mysqli_fetch_row($consultaAutor);
 
-        $ingresar = "INSERT INTO post(post,fecha_post,id_autor) VALUES ('$cuerpo','$fecha','$dato[0]')";
-        $consulta = mysqli_query($conexion,$ingresar);
+        //echo("ID del autor:".$id_Autor[0])
+        $id_autor= "INSERT INTO post(post,fecha_post,id_autor) 
+                    VALUES ('$cuerpo','$fecha','$id_Autor[0]')";
+        $consulta = mysqli_query($conexion,$id_autor);
         mysqli_close($conexion);
+
     }else{
       echo("No se ingresaron datos");
     }
@@ -51,24 +58,31 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Inicio
-              <span class="sr-only">(current)</span>
-            </a>
+
+          <li class="nav-item">
+            <a class="nav-link" href="bloghome.php" id="inicio-id">
+              <!-- <script>irInicio();</script> -->
+              Inicio
+             </a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="usuario.php">Usuario</a>
           </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#" id="volver">
-              <script> redireccionarLogin();</script>
+              <script>redireccionarLogin();</script>
               Salir
             </a>
           </li>
+
         </ul>
       </div>
+
     </div>
   </nav>
   <!-- Page Content -->

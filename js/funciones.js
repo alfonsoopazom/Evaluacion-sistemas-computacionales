@@ -10,8 +10,7 @@ function redireccionarLogin(){
     ventana= document.getElementById('volver');
     ventana.addEventListener('click',function(event){
         event.preventDefault();
-        setTimeout(location.href="inicio.php",50000)
-        //alert("Saliendo...");
+        setTimeout(location.href="inicio.php",5000)
     }); 
 }
 function irausuario(){
@@ -19,15 +18,18 @@ function irausuario(){
     usuario= document.getElementById('usuario-id');
     usuario.addEventListener('click',function(event){
         event.preventDefault();
-        setTimeout(location.href="usuario.php",50000)
+        setTimeout(location.href="usuario.php",5000)
     });    
 }
 
-function home(){
+function irInicio(){
     var home;
-    home= document.getElementById(newLocal);
+    home= document.getElementById('inicio-id');
     home.addEventListener('click',function(event){
         event.preventDefault();
-        setTimeout(location.href="bloghome.php",50000)
-    });    
+        setTimeout(location.href="bloghome.php",5000)
+    });     
 }
+ 
+
+   
