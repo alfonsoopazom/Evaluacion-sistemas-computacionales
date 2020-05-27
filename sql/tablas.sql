@@ -49,3 +49,5 @@ CREATE TABLE autores(
     FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
 );
 
+
+/*Se debe agregar una tabla con la informacion de la sesion del ususario que se registra o accede al blog*/

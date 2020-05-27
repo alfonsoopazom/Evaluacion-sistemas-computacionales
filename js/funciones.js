@@ -27,9 +27,9 @@ function irInicio(){
     home= document.getElementById('inicio-id');
     home.addEventListener('click',function(event){
         event.preventDefault();
-        setTimeout(location.href="bloghome.php",5000)
+        setTimeout(function(){window.location.reload(true);},1000)
+        //alert("Funciono");
+        //setTimeout(location.href="bloghome.php",5000)
     });     
 }
- 
-
-   
+//alert("<?php setcookie("cookie","HolaMundo",time()-1800);?>");
