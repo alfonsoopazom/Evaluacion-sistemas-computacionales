@@ -17,13 +17,13 @@
 
     </header>
 
-    <form class ="box" action="bloghome.php" method="POST" id="frmRegistro" onsubmit="return validar();">
+    <form class ="box" action="php/sesion.php" method="POST" id="frmRegistro" onsubmit="return validar();">
         <h1>Registrate</h1>
-        <input type="text" name="usuario" id="usuario" placeholder="Nombre usuario" require>
-        <input type="text" name="nombre" id="nombre" placeholder="Nombre" require>
-        <input type="text" name="apellido" id="apellido" placeholder="Apellido" require>
-        <input type="email" name="correo" id="correo" placeholder="Ingrese correo" require>
-        <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" require>
+        <input type="text" name="usuario" id="usuario" placeholder="Nombre usuario" required>
+        <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
+        <input type="text" name="apellido" id="apellido" placeholder="Apellido" required>
+        <input type="email" name="correo" id="correo" placeholder="Ingrese correo" required>
+        <input type="password" name="contrasena" id="contrasena" placeholder="Contraseña" required>
         <input type="submit" name="boton" value="Enviar" id="registro">
     </form>
 

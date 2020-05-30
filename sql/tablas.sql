@@ -24,6 +24,7 @@ CREATE TABLE logeos(
 
 CREATE TABLE post(
     id_post INT NOT NULL AUTO_INCREMENT,
+    titulo VARCHAR(255) NOT NULL,
     post TEXT NOT NULL,
     fecha_post VARCHAR(255),
     id_autor INT NOT NULL,

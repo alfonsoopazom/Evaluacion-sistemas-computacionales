@@ -17,19 +17,28 @@
         </div>
     </header>
 
-    <form class ="box" action="bloghome.php" method="POST" onsubmit="return validarLogin();"> <!--method="POST" -->
+
+    <form class ="box" action="php/sesion.php" method="POST" onsubmit="return validarLogin();"> <!--method="POST" -->
         <h1>login</h1>
         <input type="text" name="correo" id="correo" placeholder="Correo">
         <input type="password" name="password" id ="pass" placeholder="Contraseña" require>
         <input type="submit" name="boton" value="Ingresar" require>
-        
+
     </form>
+    <!-- Registrarse -->
     <form class="btn" action="formulario.php">
         <div>
-            <input type="submit" name="boton" value="Registrate"></input>     
+            <input type="submit" name="boton" value="Registrate"></input>
         </div>
     </form>
-    
+    <!-- Entrar como invitado -->
+    <form class="invitado" action="bloghome.php" method="POST">
+        <div>
+            <input type="text" name="correo" id='correo' placeholder="ingresa tu correo..."><br><br>
+            <input type="submit" name="boton" value="Entrar"></input>
+        </div>
+    </form>
+
 
 
 

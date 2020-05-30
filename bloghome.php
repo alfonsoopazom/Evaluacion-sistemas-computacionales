@@ -1,27 +1,18 @@
-<!-- Cookies para validar el correo del usuario -->
+<!-- Cookies y las sesione idealmente se agregan al principio -->
 <?php
-      include 'php/conexion.php';
+
       session_start();
-      session_regenerate_id(true);
-      
-      //echo(session_get_cookie_params()); 
-    
-      if (isset($_POST['correo'])){
-        $nombreC ="cookieC";
-        $correo =$_POST['correo'];
-        setcookie($nombreC,$correo,time()+60,"/");
-        $_SESSION['usuario']=$correo;
-        //echo($_SESSION['usuario']);
-      }
-     // if (isset($_POST['usuario'])) {
-        //$cookieUsuario = "cookieUser";
-        //$nombre_usuario=$_POST['usuario'];
-        //setcookie("cookie","HolaMundo",time()+1800,"/");
-      //}else{setcookie("cookie","HolaMundo",time()+1800);}
+      //Esta funcion permite omitir los errores por pantalla de PHP (0)
+      //error_reporting(0);
+      $varsesion =$_SESSION['correoValidacion'];
+      //echo($varsesion);
+
+      //session_regenerate_id(true);
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -37,117 +28,14 @@
 </head>
 
 <body>
-
-  <?php
-    // Script para el registro de un Usuario
-    // Falta validar si los datos como el correo, contraseña y usuario no se repitan.
-    include 'php/conexion.php';
-
-    if (isset($_POST['usuario']) && isset($_POST['correo']) &&
-        isset($_POST['nombre']) && isset($_POST['apellido']) &&
-        isset($_POST['contrasena'])){
-
-        $usuario =$_POST['usuario'];
-        $nombre =$_POST['nombre'];
-        $apellido =$_POST['apellido'];
-        $correo =$_POST['correo'];
-        $contrasena =$_POST['contrasena'];
-        $fecha =date('Y-n-d');
-        $hora =date('G:i:s');
-
-        $insertar= "INSERT INTO usuario(nombre_usuario,nombre,apellido,correo,contrasena,fecha_registro,hora_registro)
-                    VALUES ('$usuario','$nombre','$apellido','$correo','$contrasena','$fecha','$hora')";
-        $resultado = mysqli_query($conexion,$insertar);
-        mysqli_close($conexion);
-      }
-  ?>
-
-  <?php
-    //Registro de Autores
-    include 'php/conexion.php';
-
-    if (isset($_POST['correo'])){
-      $correo=$_POST['correo'];
-      $ID_autor="SELECT usuario_id, nombre_usuario FROM usuario WHERE correo='$correo'";
-      $consultaID =mysqli_query($conexion,$ID_autor);
-      $datos_usuario = mysqli_fetch_row($consultaID);
-      $agregarAutor = "INSERT INTO autores (nombre_autor,usuario_id)
-                      VALUES('$datos_usuario[1]','$datos_usuario[0]')";
-      $consultaAutor = mysqli_query($conexion,$agregarAutor);
-      mysqli_close($conexion);
-
-    }else{}
-  ?>
-
-  <?php
-    //Registro de logeo del usuario
-    include 'php/conexion.php';
-
-    if (isset($_POST['correo']) OR isset($_POST['correo'])){
-
-      if (isset($_POST['correo'])){
-
-
-         $correo_usuario=$_POST['correo'];
-         $fecha =date('Y-n-d');
-         $hora =date('G:i:s');
-         $sqlconsulta="SELECT usuario_id FROM usuario WHERE correo='$correo_usuario'";
-         $consulta= mysqli_query($conexion,$sqlconsulta);
-         $datos = mysqli_fetch_row($consulta);
-
-         $sql= "INSERT INTO logeos(correo,hora,usuario_id,fecha)
-              VALUES('$correo_usuario','$hora','$datos[0]','$fecha')";
-         $consulta1 = mysqli_query($conexion,$sql);
-         mysqli_close($conexion);
-
-        }else if(isset($_POST['correo'])){
-
-         $correo_usuario=$_POST['correo'];
-         $fecha =date('Y-n-d');
-         $hora =date('G:i:s');
-
-         $sqlconsulta="SELECT usuario_id FROM usuario WHERE correo='$correo_usuario'";
-         $consulta= mysqli_query($conexion,$sqlconsulta);
-         $datos = mysqli_fetch_row($consulta);
-
-         $sql= "INSERT INTO logeos(correo,hora,usuario_id,fecha)
-              VALUES('$correo_usuario','$hora','$datos[0]','$fecha')";
-         $consulta1 = mysqli_query($conexion,$sql);
-         mysqli_close($conexion);
-        }else {
-          echo("No se pudo logear el usuario");
-        }
-    }
-  ?>
-  <?php
-    //Validacion de usuario registrado
-    include 'php/conexion.php';
-    
-    if (isset($_POST['correo']) && isset($_POST['password'])){
-
-         $correo_ingreso=$_POST['correo'];
-         $password=$_POST['password'];
-         $sql="SELECT * FROM usuario WHERE correo ='$correo_ingreso' AND contrasena ='$password'";
-         $consulta = mysqli_query($conexion,$sql);
-         $prueba = mysqli_fetch_row($consulta);
-         //Se valida si el correo o la contraseñas ingresadas son correctas.
-         //En el caso de ser una incorrecta, se redirecciona a la pagina de inicio y se emite un Alert
-         if ($prueba[4]==$correo_ingreso ){
-           echo("<script> alert('Usuario encontrado');</script>");
-         }else if($prueba[5]==$password){
-             echo("<script> alert('Contraseña correcta');</script>");
-             //$nombreC ="cookieC";
-             //$correo =$_POST['correo'];
-             //setcookie($nombreC,$correo,time()+1800,"/");
-
-           }else{//redirecciona hacia atras si el usuario ingresado no es valido
-           echo("<script> alert('Usuario o Contraseña incorrecta');</script>");
-           echo("<script> window.location.href='inicio.php'</script> ");
-           }
-         mysqli_close($conexion);
-   }
-  ?>
-
+  <!-- Registro de usuarios -->
+ 
+  <!-- Registro de autores -->
+  
+  <!-- Registro del logeo del usuario -->
+  
+  <!-- Validacion del usuario al ingresar -->
+  
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #0040FF;">
     <div class="container">
@@ -167,8 +55,9 @@
             <a class="nav-link" id ="usuario-id">
             <!-- Se agrega el nombre del usuario al header. -->
             <?php
-                  $usuarioC=$_SESSION['usuario'];
-                  echo($usuarioC);
+
+              echo($varsesion);
+
             ?>
             </a>
             <script>irausuario();</script>
@@ -176,8 +65,11 @@
           <!-- Boton para salir de la pagina -->
           <!-- Al salir se redirecciona al login y se destruye la sesion actual -->
           <li class="nav-item">
-           <a class="nav-link" id="volver" ">Salir
-           <?php echo("<script>redireccionarLogin();</script>");session_destroy();?>
+           <a href ="php/cerrarSesion.php" class="nav-link" id="volver">Salir
+            <?php
+              //echo("<script>redireccionarLogin();</script>");
+              //  session_destroy();
+            ?>
            </a>
           </li>
         </ul>
@@ -198,7 +90,7 @@
         </h1>
 
         <!-- Blog Post -->
-      <form class ="box" action="blog-post.html" method="POST">
+      <form class ="box">
         <div class="card mb-4">
           <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
           <div class="card-body">
@@ -218,7 +110,7 @@
       </form>
 
         <!-- Blog Post -->
-      <form class ="box" action="blog-post.html" method="POST">
+      <form class ="box">
         <div class="card mb-4">
           <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
           <div class="card-body">
@@ -236,7 +128,7 @@
       </form>
 
         <!-- Blog Post -->
-      <form class ="box" action="blog-post.html" method="POST">
+      <form class ="box">
         <div class="card mb-4">
           <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
           <div class="card-body">
@@ -283,15 +175,15 @@
         <div class="card my-4">
           <h5 class="card-header">Crear Post</h5>
           <div class="card-body">
-             <span class="input-group-btn">
-             <a class="btn btn-primary" href="post.php" style="background-color: #0040FF" role="button"> Crear</a>
-              </span>
+            <span class="input-group-btn">
+             <a class="btn btn-primary" href="post.php" style="background-color: #0040FF" role="button">Crear</a>
+            </span>
           </div>
         </div>
+        <!-- Hipervinvulos a los post publicados anteriormente -->
         <div class="card my-4">
           <h5 class="card-header">Ultimos Posts</h5>
           <div class="card-body">
-
              <ul>
                 <!-- <center> -->
                 <ol><a href="post 1">Esto es un link al post 2</a></ol>
