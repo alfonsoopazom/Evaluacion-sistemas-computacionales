@@ -9,16 +9,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
+  <title>Blog de Evaluacion de sistemas computacionales</title>
   <script src="js/funciones.js"></script>
   <link rel="stylesheet" href="css/estilopost.css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
+
 <body>
 <header>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #0040FF;">
     <div class="container">
-      <a class="navbar-brand" href="#">Blog Evaluación de Sistemas Computacionales</a>
+      <a class="navbar-brand" href="bloghome.php">Blog Evaluación de Sistemas Computacionales</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -67,6 +69,14 @@
     </div>  
   </div>
 </form>
+<footer class="py-5" style="background-color: #0040FF;">
+    <div class="container">
+      <p class="m-0 text-center text-white">Blog ESC 2020</p>
+    </div>
+    <!-- /.container -->
+</footer>
+
+
 <!-- Estilos de bootstrap y libreria jquery -->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

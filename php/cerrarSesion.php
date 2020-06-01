@@ -8,7 +8,7 @@
     setcookie('contrasenaC',$contrasena,time()-3600,'/');
 
     //Destruye la sesion
-    session_destroy();
+    session_start();
     session_destroy();
     header("location:../inicio.php");
 ?>

@@ -50,5 +50,20 @@ CREATE TABLE autores(
     FOREIGN KEY (usuario_id) REFERENCES usuario(usuario_id)
 );
 
+CREATE TABLE invitados(
+    id_invitado INT NOT NULL AUTO_INCREMENT,
+    correo_invitado VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id_invitado)
+);
+
+
+CREATE TABLE logeo_invitados(
+    id_logeo_invitados INT NOT NULL AUTO_INCREMENT,
+    fecha VARCHAR(255) NOT NULL,
+    hora VARCHAR(255) NOT NULL,
+    invitados_id INT NOT NULL,
+    PRIMARY KEY (id_logeo_invitados),
+    FOREIGN KEY (invitados_id) REFERENCES invitados(id_invitado)
+);
 
 /*Se debe agregar una tabla con la informacion de la sesion del ususario que se registra o accede al blog*/

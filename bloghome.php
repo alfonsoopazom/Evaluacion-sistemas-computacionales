@@ -1,12 +1,16 @@
 <!-- Cookies y las sesione idealmente se agregan al principio -->
 <?php
-
+      //throw new Exception('hola');
       session_start();
+      
       //Esta funcion permite omitir los errores por pantalla de PHP (0)
       //error_reporting(0);
-      $varsesion =$_SESSION['correoValidacion'];
-      //echo($varsesion);
-
+      try {
+        $varsesion =$_SESSION['correoValidacion'];
+      } catch (Exception $e){
+        echo 'Excepción capturada: ';
+      }
+     
       //session_regenerate_id(true);
 ?>
 
@@ -28,15 +32,7 @@
 </head>
 
 <body>
-  <!-- Registro de usuarios -->
- 
-  <!-- Registro de autores -->
   
-  <!-- Registro del logeo del usuario -->
-  
-  <!-- Validacion del usuario al ingresar -->
-  
-  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #0040FF;">
     <div class="container">
       <a class="navbar-brand" href="#">Blog Evaluación de Sistemas Computacionales</a>
@@ -55,10 +51,12 @@
             <a class="nav-link" id ="usuario-id">
             <!-- Se agrega el nombre del usuario al header. -->
             <?php
-
-              echo($varsesion);
-
-            ?>
+              if ($varsesion) {
+                 echo($varsesion);
+              }else {
+                 echo("Usuario invitado");
+              }
+              ?>
             </a>
             <script>irausuario();</script>
           </li>
@@ -72,6 +70,7 @@
             ?>
            </a>
           </li>
+          
         </ul>
       </div>
     </div>
@@ -90,60 +89,39 @@
         </h1>
 
         <!-- Blog Post -->
-      <form class ="box">
-        <div class="card mb-4">
-          <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
+      <?php 
+        include 'php/conexion.php';
+        $post ="SELECT p.id_post, p.titulo, p.post, u.nombre_usuario,p.fecha_post 
+                FROM usuario u, autores a, post p 
+                WHERE u.usuario_id=a.usuario_id AND a.id_autor=p.id_autor";
+        $postquery = mysqli_query($conexion,$post);
+
+        while ($posts = mysqli_fetch_array($postquery)) {
+        ?>
+       
+        <form class ="box">
+        <div class="card mb-4"> 
           <div class="card-body">
-            <h2 class="card-title">Titulo del post</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-
-            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
-
+            <h2 class="card-title"><?php echo($posts['titulo']); ?> </h2>
+            <p class="card-text">
+            <?php echo($posts['post']); ?>
+            </p>
+            <a href="Postcomentado.php?id=<?php echo $posts['id_post'] ?>" class="btn btn-primary" style="background-color: #0040FF;">Ver post &rarr;</a>
           </div>
+
           <div class="card-footer text-muted">
-          <script>
-              horaActual();
-          </script> by
-            <a href="#">Nombre del usuario</a>
+         
+              <?php echo($posts['fecha_post']); ?>
+              by
+            <a href="#"> <?php echo($posts['nombre_usuario']); ?></a>
           </div>
         </div>
       </form>
-
-        <!-- Blog Post -->
-      <form class ="box">
-        <div class="card mb-4">
-          <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
-          <div class="card-body">
-            <h2 class="card-title">Titulo del post</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-
-            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
-
-          </div>
-          <div class="card-footer text-muted">
-            <script> horaActual();</script> by
-            <a href="#">Nombre del usuario</a>
-          </div>
-        </div>
-      </form>
-
-        <!-- Blog Post -->
-      <form class ="box">
-        <div class="card mb-4">
-          <!-- <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap"> -->
-          <div class="card-body">
-            <h2 class="card-title">Titulo del post</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-
-            <a href="#" class="btn btn-primary" style="background-color: #0040FF;">Seguir Leyendo &rarr;</a>
-          </div>
-          <div class="card-footer text-muted">
-          <script> horaActual();</script> by
-            <a href="#">Nombre del usuario</a>
-          </div>
-        </div>
-      </form>
-
+      <?php
+       
+        }mysqli_close($conexion);
+      ?>    
+       
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
           <li class="page-item">
@@ -186,10 +164,10 @@
           <div class="card-body">
              <ul>
                 <!-- <center> -->
+                <ol><a href="post 1">Esto es un link al post 1</a></ol>
                 <ol><a href="post 1">Esto es un link al post 2</a></ol>
                 <ol><a href="post 1">Esto es un link al post 3</a></ol>
                 <ol><a href="post 1">Esto es un link al post 4</a></ol>
-                <ol><a href="post 1">Esto es un link al post 5</a></ol>
                 <!-- </center> -->
              </ul>
           </div>

@@ -28,67 +28,47 @@ if (isset($_POST['usuario'])
 
 <!-- Sesion de usuario -->
 <?php
+    include 'conexion.php';
     session_start();
 
-    if (isset($_POST['correo'])){
+    $correo=$_POST['correo'];
+    $_SESSION['correoValidacion']= $correo;
+    $varsesion =$_SESSION['correoValidacion'];
+
+
+    if (isset($_POST['correo']) && isset($_POST['password'])){
 
         $correo=$_POST['correo'];
-        $_SESSION['correoValidacion']=$correo;
-        header("Location:../bloghome.php");
+        $contrasena=$_POST['password'];
+       
+        $consu = "SELECT correo,contrasena FROM usuario WHERE correo='$correo' AND contrasena='$contrasena'";
+        $dale=mysqli_query($conexion,$consu);
+        $resultado1 =mysqli_fetch_row($dale);
+        
+        if (($resultado1[0]==$correo) && ($resultado1[1]==$contrasena)){
+            echo("<script> alert('Usuario encontrado');</script>");
+            echo($resultado1[0]);
+            echo($resultado1[1]);
+            header("Location:../bloghome.php");
+        }else {
+            echo("<script> alert('Usuario o Contraseña incorrecta');</script>");
+            header("Refresh:0;URL=../inicio.php");
+        }
+       
     }
+    mysqli_close($conexion);
 
 ?>
 
-<!-- Registro de usuario -->
-<?php
-     include 'conexion.php';
 
-     $varsesion =$_SESSION['correoValidacion'];
-
-     if (isset($varsesion)){
-
-        $usuario=$_POST['usuario'];
-        $nombre=$_POST['nombre'];
-        $apellido=$_POST['apellido'];
-        $correo=$_POST['correo'];
-        $contrasena=$_POST['contrasena'];
-        $fecha =date('Y-n-d');
-        $hora =date('G:i:s');
-
-        $insertar= "INSERT INTO usuario(nombre_usuario,nombre,apellido,correo,contrasena,fecha_registro,hora_registro)
-                   VALUES ('$usuario','$nombre','$apellido','$correo','$contrasena','$fecha','$hora')";
-        $resultado = mysqli_query($conexion,$insertar);
-        mysqli_close($conexion);
-
-     }
-?>
-
-<!-- Registro de autores -->
-<?php
-    //Registro de Autores
-    include 'conexion.php';
-
-    if (isset($varsesion)){
-
-      $correo =$_POST['correo'];;
-      $ID_autor="SELECT usuario_id,nombre_usuario FROM usuario WHERE correo='$correo'";
-      $consultaID =mysqli_query($conexion,$ID_autor);
-      $datos_usuario = mysqli_fetch_row($consultaID);
-      $agregarAutor = "INSERT INTO autores (nombre_autor,usuario_id)
-                      VALUES('$datos_usuario[1]','$datos_usuario[0]')";
-      $consultaAutor = mysqli_query($conexion,$agregarAutor);
-      mysqli_close($conexion);
-    }
-  ?>
-
-<!-- Registro de logeos -->
+<!-- Registro de logeos en inicio-->
 <?php
      
     include 'conexion.php';
 
-    if (isset($varsesion)){
+    if (isset($_POST['correo'])){
 
-       $correo_usuario=$varsesion;
+       $correo_usuario=$_POST['correo'];
        $fecha =date('Y-n-d');
        $hora =date('G:i:s');
 
@@ -105,28 +85,10 @@ if (isset($_POST['usuario'])
 ?>
 
  <!-- Validacion del usuario al ingresar -->
- <?php
-    include 'php/conexion.php';
+ 
+<!-- Sesion de invitado -->
+<?php 
 
-    if (isset($varsesion) && isset($_POST['contrasena'])){
 
-         $correo_ingreso=$varsesion;
-         $password=$_POST['contrasena'];
 
-         $sql="SELECT * FROM usuario WHERE correo ='$correo_ingreso' AND contrasena ='$password'";
-         $consulta = mysqli_query($conexion,$sql);
-         $prueba = mysqli_fetch_row($consulta);
-         //Se valida si el correo o la contraseñas ingresadas son correctas.
-         //En el caso de ser una incorrecta, se redirecciona a la pagina de inicio y se emite un Alert
-         if ($prueba[4]==$correo_ingreso ){
-           echo("<script> alert('Usuario encontrado');</script>");
-         }else if($prueba[5]==$password){
-             echo("<script> alert('Contraseña correcta');</script>");
-
-           }else{//redirecciona hacia atras si el usuario ingresado no es valido
-           echo("<script> alert('Usuario o Contraseña incorrecta');</script>");
-           echo("<script> window.location.href='inicio.php'</script> ");
-           }
-         mysqli_close($conexion);
-   }
-  ?>
+?>

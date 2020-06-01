@@ -1,6 +1,6 @@
 .container-post{
     display: grid;
-    grid-template-columns: 3fr 9fr;
+    grid-template-columns: 3fr 7fr;
     /* grid-template-rows: 1fr 1fr; */
     margin-top: 3.5%;
     grid-column-gap: 0.5%;
@@ -12,7 +12,7 @@
     /* height: 700px; */
     padding: 5px;
     /* text-align: center; */
-    background: #0040FF;
+    background: #E85D23;
     color:black;
     border-style: groove;
     border-width: 2px;
@@ -23,7 +23,7 @@
     padding: 15px;
     /* height: 700px; */
     /* text-align:; */
-    background: #0040FF;
+    background: #E85D23;
     color: honeydew;
     /* margin-right: 1%; */
     border-style: groove;

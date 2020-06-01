@@ -17,7 +17,7 @@
 
     </header>
 
-    <form class ="box" action="php/sesion.php" method="POST" id="frmRegistro" onsubmit="return validar();">
+    <form class ="box" action="php/registro.php" method="POST" id="frmRegistro" onsubmit="return validar();">
         <h1>Registrate</h1>
         <input type="text" name="usuario" id="usuario" placeholder="Nombre usuario" required>
         <input type="text" name="nombre" id="nombre" placeholder="Nombre" required>
