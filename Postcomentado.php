@@ -29,8 +29,6 @@
         $id_post =$_GET['id'];
         mysqli_close($conexion);
     ?>
-
-
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: #0040FF;">
     <div class="container">
@@ -52,15 +50,12 @@
           <!-- usuario -->
           <li class="nav-item">
             <a class="nav-link" href="usuario.php">
-              <?php
-                  echo($varsesion);
-              ?>
+              <?php echo($varsesion);?>
             </a>
           </li>
-
+          <!-- Cerrar sesion del usuario -->
           <li class="nav-item">
             <a class="nav-link" href="php/cerrarSesion.php" id="volver">
-              <!-- <script>redireccionarLogin();</script> -->
               Salir
             </a>
           </li>
@@ -98,22 +93,21 @@
         <h1 class="mt-4"><?php echo($posts['titulo']); ?></h1>
         <!-- Autor del post -->
         <p class="lead">Por
-          <a href="#"><?php echo($posts['post']); ?></a>
+          <a href="#"><?php echo($posts['nombre_usuario']); ?></a>
         </p>
+        <!-- Contenido del post -->
+        <p><?php echo($posts['post']); ?></p>
         <!-- Date/Time -->
         <p>Posteado el </a><?php echo($posts['fecha_post']); ?></p>
-        <?php
-        }
-        ?>
+        <?php } ?>
         <!-- Preview Image -->
         <!-- <img class="img-fluid rounded" src="https://www.javeriana.edu.co/pesquisa/wp-content/uploads/2019/10/banner-articulo-ni%C3%B1a-bonita-900x300.jpg" alt=""> -->
         <!-- Contenido del Post -->
-          <p class="lead">
-            <b></b>
-          </p>
+          <p class="lead"></p>
+
         <!-- Comments Form -->
         <div class="card my-4"> 
-          <h5 class="card-header">Deja tu Comentario:<i> <?php echo($var_autor[0]);?> </i> </h5>
+          <h5 class="card-header">Deja tu Comentario:<i> Usuario <?php //echo($var_autor[0]);?> </i> </h5>
           <div class="card-body">
             <form method="POST">
               <div class="form-group">
@@ -130,7 +124,6 @@
             include 'php/conexion.php';
             
             if (isset($_POST['EnviarComentario'])){
-            
                 //Comentario y fecha del post
                 $comentario=$_POST['comentario'];
                 $fecha =date('Y-n-d');
@@ -139,73 +132,70 @@
                 $id_usuario="SELECT u.usuario_id FROM usuario u WHERE u.correo='$varsesion'";
                 $query_id = mysqli_query($conexion,$id_usuario);
                 $IDusuario = mysqli_fetch_row($query_id);
-
                 //Insertar datos a la tabla Comentarios 
                 $query_comentario = "INSERT INTO comentarios(texto,fecha,id_usuario,id_post) 
                             VALUES ('$comentario','$fecha','$IDusuario[0]','$id_post')";
                 $query_co = mysqli_query($conexion,$query_comentario);
-
                 mysqli_close($conexion);
-
             }
-
         ?>
         <?php 
             include 'php/conexion.php';
-
             //Mostar los comentarios del usuario
-            $query_mostrar = "SELECT texto FROM comentarios WHERE id_post='$id_post'";
-            $conexion_texto = mysqli_query($conexion,$query_mostrar);
-
-            
-            mysqli_close($conexion);
-
+            $query_mostrar = "SELECT texto,id_comentario FROM comentarios WHERE id_post='$id_post'";
+            $conexion_texto =mysqli_query($conexion,$query_mostrar);
+          
             while ($mostrar=mysqli_fetch_array($conexion_texto)) {
             ?>
                
         <div class="media mb-4">
         <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
           <div class="media-body">
+            <!-- Nombre del autor del comentario -->
             <h5 class="mt-0"><?php echo($var_autor[0]);?></h5>
-            <p>
+            <!-- Texto del comentario -->
+            <p> 
               <?php 
-                 echo($mostrar['texto']);
+                echo($mostrar['texto']);
+                //echo($mostrar['id_comentario']);
+                $comentario_id = $mostrar['id_comentario'];
+                echo($comentario_id);
+                if (isset($_POST["eliminar-comentario"])){
+                  $eliminar_comentarios = "DELETE FROM comentarios WHERE id_comentario='$comentario_id'";
+                  $query_eliminar=mysqli_query($conexion,$eliminar_comentarios);
+                }else{echo("HOLI");}
+                //mysqli_close($conexion); 
               ?>
             </p>
             <form method="POST">
-            <a href="#" name="eliminar-comentario" value="eliminar">Eliminar comentario
-            <?php
-                include 'php/conexion.php';
-
-                $id_comentario="SELECT c.id_comentario FROM comentarios c WHERE c.id_post='$id_post'";
-                $query_id_comentario = mysqli_query($conexion,$id_comentario);
-                $comentario_id=mysqli_fetch_row($query_id_comentario);
-                echo($comentario_id[0]);
-
-                if(isset($_POST['eliminar-comentario'])) {
-                
-                    $po=$_POST['eliminar-comentario'];
-                    echo($po);
-
-                    //Eliminar los comentarios del usuario
-                    $eliminar_comentarios = "DELETE FROM comentarios c WHERE c.id_comentario='$comentario_id[0]'";
-                    $query_eliminar=mysqli_query($conexion,$eliminar_comentarios);
-
-                    mysqli_close($conexion);
-
-                }else {
-                    echo('holi');
-                }
-                ?>
-            </a>
+            <input type="submit" name="eliminar-comentario" value="eliminar comentario" class="btn btn-primary" style="background-color: #0040FF;">
+            </input>
             </form>
-
           </div>
         </div>
-        <?php  }
-        
-                
+        <?php }
+            mysqli_close($conexion);
+
         ?>
+        <?php
+
+                // include 'php/conexion.php';
+               
+               
+                //   if(isset($_POST['eliminar-comentario'])){
+              
+                //     //$po=$_POST['eliminar-comentario'];
+                //     //echo($po);
+                //     //Eliminar los comentarios del usuario
+                //     $eliminar_comentarios = "DELETE FROM comentarios WHERE id_comentario='$comentario_id'";
+                //     $query_eliminar=mysqli_query($conexion,$eliminar_comentarios);
+                //     mysqli_close($conexion);
+                    
+                //   }else{
+                //     echo('holi');
+                //   } 
+            
+              ?>
         <!-- Fin cuadro de comentario. -->
       </div>
 

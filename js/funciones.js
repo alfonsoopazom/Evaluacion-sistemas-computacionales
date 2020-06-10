@@ -5,7 +5,6 @@ function horaActual() {
 }
 
 function redireccionarLogin(){
-    
     var ventana;
     ventana= document.getElementById('volver');
     ventana.addEventListener('click',function(event){
@@ -32,4 +31,10 @@ function irInicio(){
         //setTimeout(location.href="bloghome.php",5000)
     });     
 }
-//alert("<?php setcookie("cookie","HolaMundo",time()-1800);?>");
+
+
+function pruebaAjax(){
+
+    var xhttp = new XMLHttpRequest();
+}
+

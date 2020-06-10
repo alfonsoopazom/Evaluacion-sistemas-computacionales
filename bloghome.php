@@ -106,7 +106,7 @@
             <p class="card-text">
             <?php echo($posts['post']); ?>
             </p>
-            <a href="Postcomentado.php?id=<?php echo $posts['id_post'] ?>" class="btn btn-primary" style="background-color: #0040FF;">Ver post &rarr;</a>
+            <a href="Postcomentado.php?id=<?php echo $posts['id_post']?>" class="btn btn-primary" style="background-color: #0040FF;">Ver post &rarr;</a>
           </div>
 
           <div class="card-footer text-muted">
@@ -117,10 +117,7 @@
           </div>
         </div>
       </form>
-      <?php
-       
-        }mysqli_close($conexion);
-      ?>    
+      <?php } mysqli_close($conexion);?>    
        
         <!-- Pagination -->
         <ul class="pagination justify-content-center mb-4">
