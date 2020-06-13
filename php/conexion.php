@@ -5,10 +5,11 @@
     $db = "Blog";
     $pass = "Alfonzo2020";
     $Port=3306;
+    $CertificadoSSL="BaltimoreCyberTrustRoot.crt";
 
     //Conexion a mysql mediante Azure
     $con=mysqli_init(); 
-    //mysqli_ssl_set($con, NULL, NULL, {ca-cert filename}, NULL, NULL);
+    ysqli_ssl_set($con, NULL, NULL, $CertificadoSSL, NULL, NULL);
     mysqli_real_connect($con, $host, $userName, $pass, $db, $Port);
 
 
