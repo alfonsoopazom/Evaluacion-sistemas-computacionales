@@ -8,7 +8,7 @@
     $CertificadoSSL="BaltimoreCyberTrustRoot.crt.pem";
 
     //Conexion a mysql mediante Azure
-    $con=mysqli_init(); 
+    $conexion=mysqli_init(); 
     mysqli_ssl_set($con, NULL, NULL, $CertificadoSSL, NULL, NULL);
     mysqli_real_connect($con, $host, $userName, $pass, $db, $Port);
 
