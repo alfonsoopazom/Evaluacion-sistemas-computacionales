@@ -49,10 +49,10 @@ if (isset($_POST['usuario'])
             echo("<script> alert('Usuario encontrado');</script>");
             //echo($resultado1[0]);
             //echo($resultado1[1]);
-            header("Location:./bloghome.php");
+            header("Location:/bloghome.php");
         }else {
             echo("<script> alert('Usuario o Contraseña incorrecta');</script>");
-            header("Refresh:0;URL=https://miblogesc.azurewebsites.net/inicio.php");
+            header("Locatio:/inicio.php");
         }
        
     }
