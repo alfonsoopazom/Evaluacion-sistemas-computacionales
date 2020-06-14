@@ -2,12 +2,13 @@
 <!-- Registro de usuario -->
 <?php
      include 'conexion.php';
-
      session_start();
 
      $correo=$_POST['correo'];
      $_SESSION['correoValidacion']= $correo;
      $varsesion =$_SESSION['correoValidacion'];
+
+     echo($varsesion);
 
      if (isset($_POST['correo'])){
 
