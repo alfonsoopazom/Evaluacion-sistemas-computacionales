@@ -52,7 +52,7 @@ if (isset($_POST['usuario'])
             header("Refresh:0;URL=../bloghome.php");
         }else {
             echo("<script> alert('Usuario o Contraseña incorrecta');</script>");
-            header("Refresh:0;URL=https://miblogesc.azurewebsites.net/php/inicio.php");
+            header("Refresh:0;URL=https://miblogesc.azurewebsites.net/inicio.php");
         }
        
     }
