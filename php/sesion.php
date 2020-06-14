@@ -47,12 +47,12 @@ if (isset($_POST['usuario'])
         
         if (($resultado1[0]==$correo) && ($resultado1[1]==$contrasena)){
             echo("<script> alert('Usuario encontrado');</script>");
-            echo($resultado1[0]);
-            echo($resultado1[1]);
-            header("Location:../bloghome.php");
+            //echo($resultado1[0]);
+            //echo($resultado1[1]);
+            header("Refresh:0;URL=../bloghome.php");
         }else {
             echo("<script> alert('Usuario o Contraseña incorrecta');</script>");
-            header("Refresh:0;URL=../inicio.php");
+            header("Refresh:0;URL=https://miblogesc.azurewebsites.net/php/inicio.php");
         }
        
     }
