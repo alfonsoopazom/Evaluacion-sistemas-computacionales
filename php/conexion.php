@@ -9,17 +9,13 @@
 
     //Conexion a mysql mediante Azure
     $conexion=mysqli_init(); 
-    mysqli_ssl_set($con, NULL, NULL, $CertificadoSSL, NULL, NULL);
+    mysqli_ssl_set($con, NULL, NULL,$CertificadoSSL, NULL, NULL);
     mysqli_real_connect($con, $host, $userName, $pass, $db, $Port);
 
 
-    if (mysqli_connect_errno($con)) {
+    if (mysqli_connect_errno($conexion)) {
         die('Failed to connect to MySQL: '.mysqli_connect_error());
     }
-
-    //$con=mysqli_init(); 
-    //mysqli_ssl_set($con, NULL, NULL, {ca-cert filename}, NULL, NULL); 
-    //mysqli_real_connect($con, "esc1.mysql.database.azure.com", "AlfonsoOpazo@esc1", {your_password}, {your_database,3306);
 
     //Crear conexion
     //$conexion = mysqli_connect($host,$userName,$pass,$db); 
