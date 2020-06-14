@@ -24,6 +24,8 @@
         $resultado = mysqli_query($conexion,$insertar);
         mysqli_close($conexion);
         header("Location:../bloghome.php");
+    }else {
+        echo("No se ingresaron datos al servidor");
     }
 ?>
 
@@ -49,7 +51,7 @@
                             VALUES('$datos_usuario[1]','$datos_usuario[0]')";
             $consultaAutor = mysqli_query($conexion,$agregarAutor);
             mysqli_close($conexion);
-        }else {}
+        }else { echo("No se ingresaron datos al servidor");}
         mysqli_close($conexion);
     }
   ?>
@@ -74,6 +76,8 @@
         $consulta1 = mysqli_query($conexion,$sql);
         mysqli_close($conexion);
  
+        }else {
+            echo("No se ingresaron datos al servidor");
         }
  ?>
  

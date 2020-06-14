@@ -15,8 +15,10 @@
 
     if (mysqli_connect_errno($conexion)) {
         die('Failed to connect to MySQL: '.mysqli_connect_error());
+    }else {
+        echo("Conexion exitosa");
     }
-    
+
     //Crear conexion
     //$conexion = mysqli_connect($host,$userName,$pass,$db); 
 
