@@ -24,7 +24,7 @@
                    VALUES ('$usuario','$nombre','$apellido','$correo','$contrasena','$fecha','$hora')";
         $resultado = mysqli_query($conexion,$insertar);
         mysqli_close($conexion);
-        header("<Location: ./bloghome.php");
+        header("<Location: https://miblogesc.azurewebsites.net/bloghome.php");
     }else {
         echo("No se ingresaron datos al servidor");
     }
