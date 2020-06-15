@@ -50,10 +50,12 @@ if (isset($_POST['usuario'])
             //echo($resultado1[0]);
             //echo($resultado1[1]);
             header("Location:bloghome.php");
+            exit();
             //echo("<script> window.locationf='https://miblogesc.azurewebsites.net/bloghome.php';</script>");
         }else {
             echo("<script> alert('Usuario o Contraseña incorrecta');</script>");
-            echo("<script> window.locationf='https://miblogesc.azurewebsites.net/index.php';</script>");
+            header("Location:index.php");
+            exit();
         }
        
     }
