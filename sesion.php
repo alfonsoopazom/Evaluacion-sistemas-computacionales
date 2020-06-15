@@ -21,7 +21,7 @@ if (isset($_POST['usuario'])
      setcookie('nombreC',$nombre,time()+3600,'/');
      setcookie('apellidoC',$apellido,time()+3600,'/');
      setcookie('correoC',$correo,time()+3600,'/');
-     setcookie('contrasenaC',$contrasena,time()+3600,'/');
+     //setcookie('contrasenaC',$contrasena,time()+3600,'/');
 
     }
 ?>
