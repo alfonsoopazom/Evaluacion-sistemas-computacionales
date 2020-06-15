@@ -18,7 +18,7 @@
     </header>
 
     <!-- Formulario de registro -->
-    <form class ="box" action="php/sesion.php" method="POST" onsubmit="return validarLogin();"> <!--method="POST" -->
+    <form class ="box" action="sesion.php" method="POST" onsubmit="return validarLogin();"> <!--method="POST" -->
         <h1>login</h1>
         <input type="text" name="correo" id="correo" placeholder="Correo">
         <input type="password" name="password" id ="pass" placeholder="Contraseña" require>
