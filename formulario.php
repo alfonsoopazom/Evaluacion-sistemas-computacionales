@@ -29,7 +29,7 @@
 
     
     <!-- boton para volver al login-->
-    <form class="btn1" action="inicio.php">
+    <form class="btn1" action="index.php">
         <div>
             <input type="submit" name="boton1" value="Log In"></input>
         </div>

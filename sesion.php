@@ -28,7 +28,7 @@ if (isset($_POST['usuario'])
 
 <!-- Sesion de usuario -->
 <?php
-    include 'conexion.php';
+    include 'php/conexion.php';
     session_start();
 
     $correo=$_POST['correo'];
